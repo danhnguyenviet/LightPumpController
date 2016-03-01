@@ -58,36 +58,61 @@ public class SettingsActivity extends AppCompatActivity {
 
         try {
 
-            FileInputStream fileInputStream = openFileInput(IotConstant.SETTINGS_FILE_NAME);
-            bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
-            String line = "";
-            String longStr = "";
+            File file = getFileStreamPath(IotConstant.SETTINGS_FILE_NAME);
+            if(file.exists()) {
+                FileInputStream fileInputStream = openFileInput(IotConstant.SETTINGS_FILE_NAME);
 
-            while ((line = bufferedReader.readLine()) != null){
-                longStr += line;
-                longStr += " ";
-            }
+                bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
+                String line = "";
+                String longStr = "";
 
-            String result[] = longStr.split(" ");
+                while ((line = bufferedReader.readLine()) != null) {
+                    longStr += line;
+                    longStr += " ";
+                }
 
-            if (result.length > 1) {
-                arrFP = new ArrayList<>();
+                String result[] = longStr.split(" ");
 
-                ipAddress.setText(result[0]);
-                port.setText(result[1]);
-                arrFP.add(result[2]);
-                arrFP.add(result[3]);
-                arrFP.add(result[4]);
-                arrFP.add(result[5]);
-                arrFP.add(result[6]);
-                arrFP.add(result[7]);
-                arrFP.add(result[8]);
-                arrFP.add(result[9]);
-                arrFP.add(result[10]);
-                arrFP.add(result[11]);
+                if (result.length > 1) {
+                    arrFP = new ArrayList<>();
 
-                adapterSetting = new AdapterSetting(SettingsActivity.this,R.layout.item_list_setting,arrFP);
-                lvListFP.setAdapter(adapterSetting);
+                    ipAddress.setText(result[0]);
+                    port.setText(result[1]);
+                    arrFP.add(result[2]);
+                    arrFP.add(result[3]);
+                    arrFP.add(result[4]);
+                    arrFP.add(result[5]);
+                    arrFP.add(result[6]);
+                    arrFP.add(result[7]);
+                    arrFP.add(result[8]);
+                    arrFP.add(result[9]);
+                    arrFP.add(result[10]);
+                    arrFP.add(result[11]);
+
+                    adapterSetting = new AdapterSetting(SettingsActivity.this, R.layout.item_list_setting, arrFP);
+                    lvListFP.setAdapter(adapterSetting);
+                }
+            } else {
+
+                FileOutputStream outputStream;
+                outputStream = openFileOutput(IotConstant.SETTINGS_FILE_NAME, Context.MODE_PRIVATE);
+                outputStream.write((IotConstant.IP_ADDRESS + "\r\n" +
+                        IotConstant.PORT + "\r\n" +
+                        IotConstant.FP1 + "\r\n" +
+                        IotConstant.FP2 + "\r\n" +
+                        IotConstant.FP3 + "\r\n" +
+                        IotConstant.FP4 + "\r\n" +
+                        IotConstant.FP5 + "\r\n" +
+                        IotConstant.FP6 + "\r\n" +
+                        IotConstant.FP7 + "\r\n" +
+                        IotConstant.FP8 + "\r\n" +
+                        IotConstant.FP9 + "\r\n" +
+                        IotConstant.FP10 + "\r\n").getBytes());
+
+                outputStream.close();
+
+                readSetting();
+
             }
 
         } catch (FileNotFoundException e){

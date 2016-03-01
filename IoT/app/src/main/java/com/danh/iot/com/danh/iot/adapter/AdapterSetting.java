@@ -38,9 +38,9 @@ public class AdapterSetting extends ArrayAdapter{
         TextView textView = (TextView)convertView.findViewById(R.id.tv_item_setting);
         EditText editText = (EditText)convertView.findViewById(R.id.ed_item_setting);
 
-        textView.setText("FP " + position);
+        textView.setText("F " + (position +1));
         editText.setText(arrayList.get(position).toString());
-
+        
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

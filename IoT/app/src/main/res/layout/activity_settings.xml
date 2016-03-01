@@ -75,15 +75,6 @@
         </TableLayout>
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Danh sách FP"
-        android:id="@+id/textView30"
-        android:background="#c54d4d"
-        android:textColor="#ffffff"
-        android:gravity="center_horizontal" />
 
     <ListView
             android:layout_width="match_parent"
