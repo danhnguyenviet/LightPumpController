@@ -67,44 +67,67 @@ public class SettingsActivity extends AppCompatActivity {
 
         try {
 
-            FileInputStream fileInputStream = openFileInput(IotConstant.SETTINGS_FILE_NAME);
-            bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
-            String line = "";
-            String longStr = "";
+            File file = getFileStreamPath(IotConstant.SETTINGS_FILE_NAME);
+            if(file.exists()) {
+                FileInputStream fileInputStream = openFileInput(IotConstant.SETTINGS_FILE_NAME);
 
-            while ((line = bufferedReader.readLine()) != null){
-                longStr += line;
-                longStr += " ";
+                bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
+                String line = "";
+                String longStr = "";
+
+                while ((line = bufferedReader.readLine()) != null){
+                    longStr += line;
+                    longStr += " ";
+                }
+
+                String result[] = longStr.split(" ");
+
+                if (result.length > 1) {
+                    ipAddress.setText(result[0]);
+                    port.setText(result[1]);
+                    fp1.setText(result[2]);
+                    fp2.setText(result[3]);
+                    fp3.setText(result[4]);
+                    fp4.setText(result[5]);
+                    fp5.setText(result[6]);
+                    fp6.setText(result[7]);
+                    fp7.setText(result[8]);
+                    fp8.setText(result[9]);
+                    fp9.setText(result[10]);
+                    fp10.setText(result[11]);
+                }
+
+                bufferedReader.close();
+                Toast.makeText(getApplicationContext(), "Settings was read", Toast.LENGTH_SHORT).show();
+
+            } else {
+
+                FileOutputStream outputStream;
+                outputStream = openFileOutput(IotConstant.SETTINGS_FILE_NAME, Context.MODE_PRIVATE);
+                outputStream.write((IotConstant.IP_ADDRESS + "\r\n" +
+                        IotConstant.PORT + "\r\n" +
+                        IotConstant.FP1 + "\r\n" +
+                        IotConstant.FP2 + "\r\n" +
+                        IotConstant.FP3 + "\r\n" +
+                        IotConstant.FP4 + "\r\n" +
+                        IotConstant.FP5 + "\r\n" +
+                        IotConstant.FP6 + "\r\n" +
+                        IotConstant.FP7 + "\r\n" +
+                        IotConstant.FP8 + "\r\n" +
+                        IotConstant.FP9 + "\r\n" +
+                        IotConstant.FP10 + "\r\n").getBytes());
+
+                outputStream.close();
+
+                readSetting();
+
             }
-
-            String result[] = longStr.split(" ");
-
-            if (result.length > 1) {
-                ipAddress.setText(result[0]);
-                port.setText(result[1]);
-                fp1.setText(result[2]);
-                fp2.setText(result[3]);
-                fp3.setText(result[4]);
-                fp4.setText(result[5]);
-                fp5.setText(result[6]);
-                fp6.setText(result[7]);
-                fp7.setText(result[8]);
-                fp8.setText(result[9]);
-                fp9.setText(result[10]);
-                fp10.setText(result[11]);
-            }
-
         } catch (FileNotFoundException e){
             e.printStackTrace();
         } catch (IOException e){
             e.printStackTrace();
         } finally {
-            try {
-                bufferedReader.close();
-                Toast.makeText(getApplicationContext(), "Settings was read", Toast.LENGTH_SHORT).show();
-            } catch (IOException e){
-                e.printStackTrace();
-            }
+
         }
 
     }
@@ -158,8 +181,9 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void cancel(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, MainActivity.class);
+//        startActivity(intent);
+        finish();
     }
 
 }
