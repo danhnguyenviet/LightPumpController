@@ -1,43 +1,41 @@
 package com.danh.iot;
 
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import com.danh.iot.com.danh.iot.adapter.AdapterSetting;
-
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.util.ArrayList;
 
 /**
  * Created by Danh on 2/29/2016.
  */
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity_copy extends AppCompatActivity {
 
     private EditText ipAddress;
     private EditText port;
-    private Button btnCancel;
 
-    private ListView lvListFP;
-    private ArrayList<String> arrFP;
-    private AdapterSetting adapterSetting;
+    private EditText fp1;
+    private EditText fp2;
+    private EditText fp3;
+    private EditText fp4;
+    private EditText fp5;
+    private EditText fp6;
+    private EditText fp7;
+    private EditText fp8;
+    private EditText fp9;
+    private EditText fp10;
+
+
+
 
 
     @Override
@@ -45,10 +43,19 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        ipAddress = (EditText) findViewById(R.id.ed_setting_ip);
-        port = (EditText) findViewById(R.id.ed_setting_port);
+        ipAddress = (EditText) findViewById(R.id.editText);
+        port = (EditText) findViewById(R.id.editText13);
 
-        lvListFP = (ListView)findViewById(R.id.lv_setting_list_fp);
+        fp1 = (EditText) findViewById(R.id.editText3);
+        fp2 = (EditText) findViewById(R.id.editText4);
+        fp3 = (EditText) findViewById(R.id.editText5);
+        fp4 = (EditText) findViewById(R.id.editText6);
+        fp5 = (EditText) findViewById(R.id.editText7);
+        fp6 = (EditText) findViewById(R.id.editText8);
+        fp7 = (EditText) findViewById(R.id.editText9);
+        fp8 = (EditText) findViewById(R.id.editText10);
+        fp9 = (EditText) findViewById(R.id.editText11);
+        fp10 = (EditText) findViewById(R.id.editText12);
 
         readSetting();
     }
@@ -71,23 +78,18 @@ public class SettingsActivity extends AppCompatActivity {
             String result[] = longStr.split(" ");
 
             if (result.length > 1) {
-                arrFP = new ArrayList<>();
-
                 ipAddress.setText(result[0]);
                 port.setText(result[1]);
-                arrFP.add(result[2]);
-                arrFP.add(result[3]);
-                arrFP.add(result[4]);
-                arrFP.add(result[5]);
-                arrFP.add(result[6]);
-                arrFP.add(result[7]);
-                arrFP.add(result[8]);
-                arrFP.add(result[9]);
-                arrFP.add(result[10]);
-                arrFP.add(result[11]);
-
-                adapterSetting = new AdapterSetting(SettingsActivity.this,R.layout.item_list_setting,arrFP);
-                lvListFP.setAdapter(adapterSetting);
+                fp1.setText(result[2]);
+                fp2.setText(result[3]);
+                fp3.setText(result[4]);
+                fp4.setText(result[5]);
+                fp5.setText(result[6]);
+                fp6.setText(result[7]);
+                fp7.setText(result[8]);
+                fp8.setText(result[9]);
+                fp9.setText(result[10]);
+                fp10.setText(result[11]);
             }
 
         } catch (FileNotFoundException e){
@@ -113,16 +115,16 @@ public class SettingsActivity extends AppCompatActivity {
 
             IotConstant.IP_ADDRESS      = ipAddress.getText().toString();
             IotConstant.PORT            = port.getText().toString();
-            IotConstant.FP1             = arrFP.get(0);
-            IotConstant.FP2             = arrFP.get(1);
-            IotConstant.FP3             = arrFP.get(2);
-            IotConstant.FP4             = arrFP.get(3);
-            IotConstant.FP5             = arrFP.get(4);
-            IotConstant.FP6             = arrFP.get(5);
-            IotConstant.FP7             = arrFP.get(6);
-            IotConstant.FP8             = arrFP.get(7);
-            IotConstant.FP9             = arrFP.get(8);
-            IotConstant.FP10            = arrFP.get(9);
+            IotConstant.FP1             = fp1.getText().toString();
+            IotConstant.FP2             = fp2.getText().toString();
+            IotConstant.FP3             = fp3.getText().toString();
+            IotConstant.FP4             = fp4.getText().toString();
+            IotConstant.FP5             = fp5.getText().toString();
+            IotConstant.FP6             = fp6.getText().toString();
+            IotConstant.FP7             = fp7.getText().toString();
+            IotConstant.FP8             = fp8.getText().toString();
+            IotConstant.FP9             = fp9.getText().toString();
+            IotConstant.FP10            = fp10.getText().toString();
 
             outputStream = openFileOutput(IotConstant.SETTINGS_FILE_NAME, Context.MODE_PRIVATE);
             outputStream.write((IotConstant.IP_ADDRESS + "\r\n" +
@@ -154,8 +156,8 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void cancel(View view) {
-//        Intent intent = new Intent(this, MainActivity.class);
-//        startActivity(intent);
-        finish();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
+
 }
