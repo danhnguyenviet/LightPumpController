@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 
 /**
  * Created by NPhat on 1/3/2016.
+ *
  */
 public class AdapterSetting extends ArrayAdapter{
     private Activity context;
@@ -32,15 +35,18 @@ public class AdapterSetting extends ArrayAdapter{
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+        //Get layout
         LayoutInflater inflater = context.getLayoutInflater();
         convertView = inflater.inflate(R.layout.item_list_setting,null);
 
         TextView textView = (TextView)convertView.findViewById(R.id.tv_item_setting);
-        EditText editText = (EditText)convertView.findViewById(R.id.ed_item_setting);
+        final EditText editText = (EditText)convertView.findViewById(R.id.ed_item_setting);
 
         textView.setText("F " + (position +1));
         editText.setText(arrayList.get(position).toString());
-        
+
+
+        //Save data after edittext changed
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
