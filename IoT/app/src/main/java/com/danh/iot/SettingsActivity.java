@@ -67,7 +67,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         try {
 
-            FileInputStream fileInputStream = openFileInput("iot_settings.txt");
+            FileInputStream fileInputStream = openFileInput(IotConstant.SETTINGS_FILE_NAME);
             bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
             String line = "";
             String longStr = "";
@@ -115,7 +115,20 @@ public class SettingsActivity extends AppCompatActivity {
 
         try{
 
-            outputStream = openFileOutput("iot_settings.txt", Context.MODE_PRIVATE);
+            IotConstant.IP_ADDRESS      = ipAddress.getText().toString();
+            IotConstant.PORT            = port.getText().toString();
+            IotConstant.FP1             = fp1.getText().toString();
+            IotConstant.FP2             = fp2.getText().toString();
+            IotConstant.FP3             = fp3.getText().toString();
+            IotConstant.FP4             = fp4.getText().toString();
+            IotConstant.FP5             = fp5.getText().toString();
+            IotConstant.FP6             = fp6.getText().toString();
+            IotConstant.FP7             = fp7.getText().toString();
+            IotConstant.FP8             = fp8.getText().toString();
+            IotConstant.FP9             = fp9.getText().toString();
+            IotConstant.FP10            = fp10.getText().toString();
+
+            outputStream = openFileOutput(IotConstant.SETTINGS_FILE_NAME, Context.MODE_PRIVATE);
             outputStream.write((IotConstant.IP_ADDRESS + "\r\n" +
                 IotConstant.PORT + "\r\n" +
                 IotConstant.FP1 + "\r\n" +
@@ -131,18 +144,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             outputStream.close();
 
-//            ipAddress.setText(result);
-//            port.setText(result[1]);
-//            fp1.setText(result[2]);
-//            fp2.setText(result[3]);
-//            fp3.setText(result[4]);
-//            fp4.setText(result[5]);
-//            fp5.setText(result[6]);
-//            fp6.setText(result[7]);
-//            fp7.setText(result[8]);
-//            fp8.setText(result[9]);
-//            fp9.setText(result[10]);
-//            fp10.setText(result[11]);
+            readSetting();
 
             Toast.makeText(getApplicationContext(), "Settings was saved", Toast.LENGTH_SHORT).show();
 

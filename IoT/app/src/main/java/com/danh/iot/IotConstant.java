@@ -3,7 +3,7 @@ package com.danh.iot;
 /**
  * Created by Danh on 2/22/2016.
  */
-public interface IotConstant {
+public class IotConstant {
 
     public static String IP_ADDRESS     = "192.168.55.248";
     public static String PORT           = "80";
@@ -27,5 +27,7 @@ public interface IotConstant {
     public static String SCHEDULE_FOR_MOBILE_URL    = "http://" + IP_ADDRESS + "/IOT_Server/schedule_for_mobile.php";
 
     public static String BR_STRING = "<br/>";
+
+    public static String SETTINGS_FILE_NAME = "iot_settings.txt";
 
 }
