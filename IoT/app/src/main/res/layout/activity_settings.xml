@@ -253,8 +253,7 @@
             android:id="@+id/button7"
             android:layout_below="@+id/textView22"
             android:layout_toRightOf="@+id/textView22"
-            android:layout_toEndOf="@+id/textView22"
-            android:onClick="saveSetting"/>
+            android:layout_toEndOf="@+id/textView22" />
 
         <Button
             android:layout_width="wrap_content"

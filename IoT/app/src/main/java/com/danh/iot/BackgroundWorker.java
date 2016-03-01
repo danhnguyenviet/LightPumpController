@@ -40,6 +40,8 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 String stoppedTime = params[2];
                 URL url = new URL(BackgroundWorker.url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+                httpURLConnection.setReadTimeout(15000);
+                httpURLConnection.setConnectTimeout(15000);
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 httpURLConnection.setDoInput(true);

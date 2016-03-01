@@ -25,6 +25,7 @@ public class IotConstant {
     public static String TURN_ON_PUMP_URL           = "http://" + IP_ADDRESS + "/IOT_Server/turn_on_pump.php";
     public static String TURN_OFF_PUMP_URL          = "http://" + IP_ADDRESS + "/IOT_Server/turn_off_pump.php";
     public static String SCHEDULE_FOR_MOBILE_URL    = "http://" + IP_ADDRESS + "/IOT_Server/schedule_for_mobile.php";
+    public static String SAVE_SETTINGS_URL          = "http://" + IP_ADDRESS + "/IOT_Server/save_settings.php";
 
     public static String BR_STRING = "<br/>";
 
