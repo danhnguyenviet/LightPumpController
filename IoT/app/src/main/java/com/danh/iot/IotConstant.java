@@ -7,16 +7,16 @@ public class IotConstant {
 
     public static String IP_ADDRESS     = "192.168.55.248";
     public static String PORT           = "80";
-    public static String FP1        = "DEFAULT";
-    public static String FP2        = "DEFAULT";
-    public static String FP3        = "DEFAULT";
-    public static String FP4        = "DEFAULT";
-    public static String FP5        = "DEFAULT";
-    public static String FP6        = "DEFAULT";
-    public static String FP7        = "DEFAULT";
-    public static String FP8        = "DEFAULT";
-    public static String FP9        = "DEFAULT";
-    public static String FP10       = "DEFAULT";
+    public static String FP1        = "1";
+    public static String FP2        = "2";
+    public static String FP3        = "3";
+    public static String FP4        = "4";
+    public static String FP5        = "5";
+    public static String FP6        = "6";
+    public static String FP7        = "7";
+    public static String FP8        = "8";
+    public static String FP9        = "9";
+    public static String FP10       = "10";
 
     public static String GET_TEMPERATURE_URL        = "http://" + IP_ADDRESS + "/IOT_Server/get_temperature.php";
     public static String GET_MOISTURE_URL           = "http://" + IP_ADDRESS + "/IOT_Server/get_moisture.php";
