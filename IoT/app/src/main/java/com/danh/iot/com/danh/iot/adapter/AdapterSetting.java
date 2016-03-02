@@ -40,7 +40,7 @@ public class AdapterSetting extends ArrayAdapter{
 
         textView.setText("F " + (position +1));
         editText.setText(arrayList.get(position).toString());
-        
+
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
