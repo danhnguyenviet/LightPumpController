@@ -47,6 +47,7 @@ public class AdapterSetting extends ArrayAdapter{
 
 
         //Save data after edittext changed
+
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
