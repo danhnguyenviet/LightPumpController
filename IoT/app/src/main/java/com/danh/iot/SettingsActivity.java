@@ -66,7 +66,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     //Read Data Setting from Server
     public void readSettingFromServer(){
-        ThreadSetting threadSetting = new ThreadSetting("read",getIpOfDevice(),handler);
+        ThreadSetting threadSetting = new ThreadSetting("read","10.0.3.15",handler);
         threadSetting.start();
     }
 
@@ -104,8 +104,8 @@ public class SettingsActivity extends AppCompatActivity {
             super.handleMessage(msg);
             try {
                 if(msg.getData().getString("flagSetting").toString() == "read"){
-                    Toast.makeText(SettingsActivity.this,msg.getData().getString("data"),Toast.LENGTH_SHORT).show();
-                    if(msg.getData().getString("data") == "null"){ //Data not exist on Server. Get Default Data
+
+                    if(msg.getData().getString("data").equals("null")){ //Data not exist on Server. Get Default Data
                         Toast.makeText(SettingsActivity.this,"Khong co du lieu",Toast.LENGTH_SHORT).show();
                         createDefaultData();
                     }else{ //Data exist on Server
@@ -213,7 +213,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                 FileOutputStream outputStream;
                 outputStream = openFileOutput(IotConstant.SETTINGS_FILE_NAME, Context.MODE_PRIVATE);
-                outputStream.write((IotConstant.IP_ADDRESS + "\r\n" +
+                outputStream.write((IotConstant.SERVER_IP_ADDRESS + "\r\n" +
                         IotConstant.PORT + "\r\n" +
                         IotConstant.FP1 + "\r\n" +
                         IotConstant.FP2 + "\r\n" +
@@ -254,7 +254,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         try{
 
-            IotConstant.IP_ADDRESS      = ipAddress.getText().toString();
+            IotConstant.SERVER_IP_ADDRESS      = ipAddress.getText().toString();
             IotConstant.PORT            = port.getText().toString();
             IotConstant.FP1             = arrFP.get(0);
             IotConstant.FP2             = arrFP.get(1);
@@ -268,7 +268,7 @@ public class SettingsActivity extends AppCompatActivity {
             IotConstant.FP10            = arrFP.get(9);
 
             outputStream = openFileOutput(IotConstant.SETTINGS_FILE_NAME, Context.MODE_PRIVATE);
-            outputStream.write((IotConstant.IP_ADDRESS + "\r\n" +
+            outputStream.write((IotConstant.SERVER_IP_ADDRESS + "\r\n" +
                 IotConstant.PORT + "\r\n" +
                 IotConstant.FP1 + "\r\n" +
                 IotConstant.FP2 + "\r\n" +

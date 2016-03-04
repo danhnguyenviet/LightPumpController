@@ -5,7 +5,9 @@ package com.danh.iot;
  */
 public class IotConstant {
 
-    public static String IP_ADDRESS     = "192.168.55.248";
+    public static String DATA_IP_ADDRESS     = "mysql.hostinger.vn";
+    public static String SERVER_IP_ADDRESS     = "demoiot.esy.es";
+
     public static String PORT           = "80";
     public static String FP1        = "1";
     public static String FP2        = "2";
@@ -19,13 +21,13 @@ public class IotConstant {
     public static String FP10       = "10";
 
 
-    public static String GET_TEMPERATURE_URL        = "http://" + IP_ADDRESS + "/IOT_Server/get_temperature.php";
-    public static String GET_MOISTURE_URL           = "http://" + IP_ADDRESS + "/IOT_Server/get_moisture.php";
-    public static String TURN_ON_LIGHT_URL          = "http://" + IP_ADDRESS + "/IOT_Server/turn_on_light.php";
-    public static String TURN_OFF_LIGHT_URL         = "http://" + IP_ADDRESS + "/IOT_Server/turn_off_light.php";
-    public static String TURN_ON_PUMP_URL           = "http://" + IP_ADDRESS + "/IOT_Server/turn_on_pump.php";
-    public static String TURN_OFF_PUMP_URL          = "http://" + IP_ADDRESS + "/IOT_Server/turn_off_pump.php";
-    public static String SCHEDULE_FOR_MOBILE_URL    = "http://" + IP_ADDRESS + "/IOT_Server/schedule_for_mobile.php";
+    public static String GET_TEMPERATURE_URL        = "http://" + SERVER_IP_ADDRESS + "/IOT_Server/get_temperature.php";
+    public static String GET_MOISTURE_URL           = "http://" + SERVER_IP_ADDRESS + "/IOT_Server/get_moisture.php";
+    public static String TURN_ON_LIGHT_URL          = "http://" + SERVER_IP_ADDRESS + "/IOT_Server/turn_on_light.php";
+    public static String TURN_OFF_LIGHT_URL         = "http://" + SERVER_IP_ADDRESS + "/IOT_Server/turn_off_light.php";
+    public static String TURN_ON_PUMP_URL           = "http://" + SERVER_IP_ADDRESS + "/IOT_Server/turn_on_pump.php";
+    public static String TURN_OFF_PUMP_URL          = "http://" + SERVER_IP_ADDRESS + "/IOT_Server/turn_off_pump.php";
+    public static String SCHEDULE_FOR_MOBILE_URL    = "http://" + SERVER_IP_ADDRESS + "/IOT_Server/schedule_for_mobile.php";
 
     public static String BR_STRING = "<br/>";
 
@@ -33,9 +35,11 @@ public class IotConstant {
 
     /**
      * CUID DATABASE
+     * Code on database
+     * Temp ip address
      */
-    public static String READ_DATA_SETTING_URL = "http://demoiot.esy.es/readSettingIOT.php";
-    public static String SAVE_DATA_SETTING_URL = "http://demoiot.esy.es/saveSettingIOT.php";
+    public static String READ_DATA_SETTING_URL = "http://" + SERVER_IP_ADDRESS + "/readSettingIOT.php";
+    public static String SAVE_DATA_SETTING_URL = "http://" + SERVER_IP_ADDRESS + "/saveSettingIOT.php";
 
 
 

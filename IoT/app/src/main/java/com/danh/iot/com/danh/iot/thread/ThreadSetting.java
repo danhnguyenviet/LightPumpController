@@ -42,7 +42,7 @@ public class ThreadSetting extends Thread {
 
     public ThreadSetting(String flagSetting, String ip, Handler handler){
         this.flagSetting = flagSetting;
-        this.ip = "10.0.3.15";
+        this.ip = ip;
         this.handler = handler;
 //        this.message = message;
     }
