@@ -3,6 +3,7 @@ package com.danh.iot;
 import com.danh.iot.com.danh.iot.thread.ThreadSetting;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.wifi.WifiManager;
@@ -48,6 +49,9 @@ public class SettingsActivity extends AppCompatActivity {
     private ArrayList<String> arrFP;
     private AdapterSetting adapterSetting;
 
+    private ProgressDialog progressDialog;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,9 @@ public class SettingsActivity extends AppCompatActivity {
 
     //Read Data Setting from Server
     public void readSettingFromServer(){
+        //Create progressDialog for beauty
+        progressDialog = ProgressDialog.show(SettingsActivity.this,"Loading data","Please wait...");
+
         ThreadSetting threadSetting = new ThreadSetting("read","10.0.3.15",handler);
         threadSetting.start();
     }
@@ -85,6 +92,9 @@ public class SettingsActivity extends AppCompatActivity {
             listFP = listFP +  arrFP.get(i).toString() + ",";
 
         }
+
+        //Create progressDialog for beauty
+        progressDialog = ProgressDialog.show(SettingsActivity.this,"Saving data","Please wait...");
 
         ThreadSetting threadSetting = new ThreadSetting("save",sendIp,sendPort,listFP,handler);
         threadSetting.start();
@@ -106,15 +116,17 @@ public class SettingsActivity extends AppCompatActivity {
                 if(msg.getData().getString("flagSetting").toString() == "read"){
 
                     if(msg.getData().getString("data").equals("null")){ //Data not exist on Server. Get Default Data
-                        Toast.makeText(SettingsActivity.this,"Khong co du lieu",Toast.LENGTH_SHORT).show();
                         createDefaultData();
                     }else{ //Data exist on Server
                         readResultJson(msg.getData().getString("data").toString());
                     }
+                    progressDialog.dismiss();
                 }
                 if(msg.getData().getString("flagSetting").toString() == "save"){
 //                    Toast.makeText(SettingsActivity.this,msg.getData().getString("data").toString(),Toast.LENGTH_SHORT).show();
-                    Toast.makeText(SettingsActivity.this,"Saved success...",Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                    Toast.makeText(SettingsActivity.this,"Saved success...", Toast.LENGTH_SHORT).show();
+
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
