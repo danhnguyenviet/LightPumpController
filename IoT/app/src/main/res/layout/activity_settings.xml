@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:text="Save"
                 android:id="@+id/btn_setting_save"
-                android:onClick="saveSetting"
+                android:onClick="sendSettingToServer"
                 android:layout_weight="1" />
 
             <Button

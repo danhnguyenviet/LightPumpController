@@ -1,12 +1,17 @@
 package com.danh.iot;
 
+import com.danh.iot.com.danh.iot.thread.ThreadSetting;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.Formatter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +19,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.danh.iot.com.danh.iot.adapter.AdapterSetting;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -25,6 +33,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Danh on 2/29/2016.
@@ -50,9 +59,117 @@ public class SettingsActivity extends AppCompatActivity {
 
         lvListFP = (ListView)findViewById(R.id.lv_setting_list_fp);
 
-        readSetting();
+//        readSetting();
+        //Read Data Setting from Server
+        readSettingFromServer();
     }
 
+    //Read Data Setting from Server
+    public void readSettingFromServer(){
+        ThreadSetting threadSetting = new ThreadSetting("read",getIpOfDevice(),handler);
+        threadSetting.start();
+    }
+
+    //Save Data Setting to Server
+    public void sendSettingToServer(View view){
+        String sendIp = ipAddress.getText().toString();
+        String sendPort = port.getText().toString();
+
+        //Create String FP and send to Server.( FP = "1,2,3,4,5...")
+        String listFP = "";
+        for (int i = 0; i<arrFP.size(); i++){
+            if(i == (arrFP.size() - 1)){
+                listFP += arrFP.get(i).toString();
+                break;
+            }
+            listFP = listFP +  arrFP.get(i).toString() + ",";
+
+        }
+
+        ThreadSetting threadSetting = new ThreadSetting("save",sendIp,sendPort,listFP,handler);
+        threadSetting.start();
+    }
+
+    //Get ip of Device
+    public String getIpOfDevice(){
+        WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
+        String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+        return ip;
+    }
+
+    //Create Handler for thread and update for Screen Setting
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            try {
+                if(msg.getData().getString("flagSetting").toString() == "read"){
+                    Toast.makeText(SettingsActivity.this,msg.getData().getString("data"),Toast.LENGTH_SHORT).show();
+                    if(msg.getData().getString("data") == "null"){ //Data not exist on Server. Get Default Data
+                        Toast.makeText(SettingsActivity.this,"Khong co du lieu",Toast.LENGTH_SHORT).show();
+                        createDefaultData();
+                    }else{ //Data exist on Server
+                        readResultJson(msg.getData().getString("data").toString());
+                    }
+                }
+                if(msg.getData().getString("flagSetting").toString() == "save"){
+//                    Toast.makeText(SettingsActivity.this,msg.getData().getString("data").toString(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SettingsActivity.this,"Saved success...",Toast.LENGTH_SHORT).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
+    //Read result (Json)
+    public void readResultJson(String data) throws JSONException {
+        JSONObject jsonObject = new JSONObject(data);
+
+        String resultIP = jsonObject.getString("ip");
+        String resultPORT = jsonObject.getString("port");
+        String fp = jsonObject.getString("fp");
+
+        String[] listFP = fp.split(",");
+
+        //Set resource for ArrayAdapter
+        arrFP = new ArrayList<>();
+        for (int i = 0 ; i < listFP.length; i++){
+            arrFP.add(listFP[i]);
+        }
+
+        //Create adapter setting
+        adapterSetting = new AdapterSetting(SettingsActivity.this, R.layout.item_list_setting, arrFP);
+        lvListFP.setAdapter(adapterSetting);
+
+        //Set ip and port
+        ipAddress.setText(resultIP);
+        port.setText(resultPORT);
+    }
+
+    //Create Default Data if Data not exist on Server
+    public void createDefaultData(){
+        arrFP = new ArrayList<>();
+        arrFP.add(IotConstant.FP1);
+        arrFP.add(IotConstant.FP2);
+        arrFP.add(IotConstant.FP3);
+        arrFP.add(IotConstant.FP4);
+        arrFP.add(IotConstant.FP5);
+        arrFP.add(IotConstant.FP6);
+        arrFP.add(IotConstant.FP7);
+        arrFP.add(IotConstant.FP8);
+        arrFP.add(IotConstant.FP9);
+        arrFP.add(IotConstant.FP10);
+
+        adapterSetting = new AdapterSetting(SettingsActivity.this, R.layout.item_list_setting, arrFP);
+        lvListFP.setAdapter(adapterSetting);
+
+        ipAddress.setText(getIpOfDevice());
+        port.setText(IotConstant.PORT);
+    }
+
+
+    //Bo ham na'y
     public void readSetting(){
         BufferedReader bufferedReader = null;
 
@@ -130,6 +247,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
+    //Bo ham na'y
     public void saveSetting(View view) throws IOException {
 
         FileOutputStream outputStream;
