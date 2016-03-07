@@ -1,13 +1,11 @@
 package com.danh.iot.com.danh.iot.thread;
 
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
 import com.danh.iot.IotConstant;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -40,6 +38,11 @@ public class ThreadSetting extends Thread {
     private Message message;
     private Bundle bundle;
 
+
+    public ThreadSetting(String flagSetting){
+        this.flagSetting = flagSetting;
+    }
+
     public ThreadSetting(String flagSetting, String ip, Handler handler){
         this.flagSetting = flagSetting;
         this.ip = ip;
@@ -55,6 +58,8 @@ public class ThreadSetting extends Thread {
         this.handler = handler;
     }
 
+
+
     @Override
     public void run() {
         super.run();
@@ -65,7 +70,63 @@ public class ThreadSetting extends Thread {
             case "read":
                 readDataFromServer();
                 break;
+            case "GET_TEMPERATURE_INFO":
+                getTemperatureInfo();
+                break;
+            case "GET_MOISTURE_INFO":
+                getMoistureInfo();
+                break;
         }
+    }
+
+    public String getTemperatureInfo() {
+
+        try {
+
+            url = new URL(IotConstant.GET_TEMPERATURE_URL);
+            httpURLConnection = (HttpURLConnection)url.openConnection();
+
+            httpURLConnection.connect();
+
+            bundle = new Bundle();
+            bundle.putString("flagSetting","GET_TEMPERATURE_INFO");
+            bundle.putString("data",readResponse());
+            message = Message.obtain();
+            message.setData(bundle);
+            handler.sendMessage(message);
+
+            return readResponse();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "";
+    }
+
+    public String getMoistureInfo() {
+        try {
+            url = new URL(IotConstant.GET_MOISTURE_URL);
+            httpURLConnection = (HttpURLConnection)url.openConnection();
+
+            httpURLConnection.connect();
+
+            bundle = new Bundle();
+            bundle.putString("flagSetting","GET_MOISTURE_INFO");
+            bundle.putString("data",readResponse());
+            message = Message.obtain();
+            message.setData(bundle);
+            handler.sendMessage(message);
+
+            return readResponse();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "";
     }
 
     public void readDataFromServer(){
@@ -134,7 +195,6 @@ public class ThreadSetting extends Thread {
     }
 
     public void createRequest(String parameter) throws ProtocolException {
-
         httpURLConnection.setRequestMethod("POST");
         httpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
         httpURLConnection.setRequestProperty("Content-Length", "" + Integer.toString(parameter.getBytes().length));
@@ -143,7 +203,6 @@ public class ThreadSetting extends Thread {
         httpURLConnection.setDoInput(true);
         httpURLConnection.setDoInput(true);
     }
-
 
     //Send parameter to Server
     public void sendRequest(String parameter) throws IOException {
@@ -166,4 +225,7 @@ public class ThreadSetting extends Thread {
 
         return stringBuffer.toString();
     }
+
+
+
 }

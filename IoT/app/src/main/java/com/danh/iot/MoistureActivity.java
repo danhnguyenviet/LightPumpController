@@ -4,10 +4,14 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.danh.iot.com.danh.iot.thread.ThreadSetting;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,7 +41,46 @@ public class MoistureActivity extends AppCompatActivity {
         tvTime          = (TextView) findViewById(R.id.textView9);
         tvSoilMoisture  = (TextView) findViewById(R.id.textView11);
 
-        this.loadMoistureData();
+        this.readTemperatureFromServer();
+    }
+
+    public void readTemperatureFromServer(){
+        ThreadSetting threadSetting = new ThreadSetting("GET_MOISTURE_INFO", "10.0.3.15", handler);
+        threadSetting.start();
+    }
+
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            if(msg.getData().getString("flagSetting").toString() == "GET_MOISTURE_INFO"){
+
+                if(msg.getData().getString("data").equals(null)){ //Data not exist on Server. Get Default Data
+                    Toast.makeText(MoistureActivity.this, "Can't find data",Toast.LENGTH_SHORT).show();
+
+                }else{ //Data exist on Server
+                    Toast.makeText(MoistureActivity.this, "Loading...",Toast.LENGTH_SHORT).show();
+                    getMoistureInfo(msg.getData().getString("data").toString());
+                }
+            }
+
+        }
+    };
+
+    private void getMoistureInfo(String msg) {
+        if (!msg.equals(null)) {
+            String[] result = msg.split(IotConstant.BR_STRING);
+
+            if (result.length > 1) {
+
+                tvLocation.setText("Location: " + result[0]); // location
+                tvDate.setText(result[1]); // date
+                tvTime.setText(result[2]); // time
+                tvSoilMoisture.setText(result[3] + "%"); // soil moisture
+
+            }
+        }
     }
 
     /**
