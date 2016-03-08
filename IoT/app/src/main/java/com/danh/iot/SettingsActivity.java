@@ -116,6 +116,7 @@ public class SettingsActivity extends AppCompatActivity {
                 if(msg.getData().getString("flagSetting").toString() == "read"){
 
                     if(msg.getData().getString("data").equals("null")){ //Data not exist on Server. Get Default Data
+                        Toast.makeText(SettingsActivity.this,"Can't find data",Toast.LENGTH_SHORT).show();
                         createDefaultData();
                     }else{ //Data exist on Server
                         readResultJson(msg.getData().getString("data").toString());
@@ -128,6 +129,7 @@ public class SettingsActivity extends AppCompatActivity {
                     Toast.makeText(SettingsActivity.this,"Saved success...", Toast.LENGTH_SHORT).show();
 
                 }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
