@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="HONEYNET"
+        android:id="@+id/textView4"
+        android:layout_gravity="center_horizontal"
+        android:textSize="40dp"
+        android:textColor="#ff0000"
+        android:textStyle="bold"
+        android:layout_marginTop="80dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ed_login_username"
+        android:layout_gravity="center_horizontal"
+        android:ems="13"
+        android:layout_marginTop="40dp"
+        android:inputType="text"
+        android:hint="User name" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ed_login_password"
+        android:layout_gravity="center_horizontal"
+        android:ems="13"
+        android:inputType="textPassword"
+        android:layout_marginTop="30dp"
+        android:hint="Password" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Login"
+        android:id="@+id/tv_login_submit"
+        android:layout_gravity="right"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="30dp"
+        android:textSize="20dp"
+        android:textColor="#d92929" />
+</LinearLayout>

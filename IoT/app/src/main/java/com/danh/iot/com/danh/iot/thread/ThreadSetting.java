@@ -22,6 +22,7 @@ import java.net.URLEncoder;
 /**
  * Created by NPhat on 3/3/2016.
  * ThreadSetting read data from server and save data to server
+ *
  */
 public class ThreadSetting extends Thread {
 
@@ -68,6 +69,9 @@ public class ThreadSetting extends Thread {
         }
     }
 
+    /**
+     * Read result from server after send request (ip)
+     */
     public void readDataFromServer(){
         try {
             //Set parameter sent.
@@ -97,6 +101,9 @@ public class ThreadSetting extends Thread {
 
     }
 
+    /**
+     * Send data to Server and save it to Database
+     */
     public void saveDataToServer() {
         String parameter = null;
         try {
@@ -133,6 +140,11 @@ public class ThreadSetting extends Thread {
 
     }
 
+    /**
+     * Create requests for httpURLConnection. Prepare send Data to Server
+     * @param parameter
+     * @throws ProtocolException
+     */
     public void createRequest(String parameter) throws ProtocolException {
 
         httpURLConnection.setRequestMethod("POST");

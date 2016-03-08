@@ -40,6 +40,7 @@ public class IotConstant {
      */
     public static String READ_DATA_SETTING_URL = "http://" + SERVER_IP_ADDRESS + "/readSettingIOT.php";
     public static String SAVE_DATA_SETTING_URL = "http://" + SERVER_IP_ADDRESS + "/saveSettingIOT.php";
+    public static String LOGIN_URL = "http://" + SERVER_IP_ADDRESS + "/loginIOT.php";
 
 
 
