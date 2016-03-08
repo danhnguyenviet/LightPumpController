@@ -37,12 +37,35 @@ public class LoginActivity extends AppCompatActivity {
         tvBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog = ProgressDialog.show(LoginActivity.this,"Login","Waiting...");
-                ThreadLogin threadLogin = new ThreadLogin(edUsername.getText().toString(),edPassword.getText().toString(),handler);
-                threadLogin.start();
+                if(checkValueInput()){
+                    progressDialog = ProgressDialog.show(LoginActivity.this,"Login","Waiting...");
+                    ThreadLogin threadLogin = new ThreadLogin(edUsername.getText().toString(),edPassword.getText().toString(),handler);
+                    threadLogin.start();
+                }
+
             }
         });
 
+    }
+
+
+    /**
+     *Check username and password empty
+     * @return true if inputs value
+     */
+    public boolean checkValueInput(){
+        String username = edUsername.getText().toString();
+        String password = edPassword.getText().toString();
+
+        if(username.equals("")){
+            edUsername.requestFocus();
+            return false;
+        }
+        if(password.equals("")){
+            edPassword.requestFocus();
+            return false;
+        }
+        return true;
     }
 
     private Handler handler = new Handler(){
@@ -55,7 +78,6 @@ public class LoginActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-//            Toast.makeText(LoginActivity.this,msg.getData().getString("data").toString(),Toast.LENGTH_SHORT).show();
         }
     };
 
