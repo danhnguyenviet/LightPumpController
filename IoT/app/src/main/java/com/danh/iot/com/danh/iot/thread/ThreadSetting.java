@@ -79,7 +79,7 @@ public class ThreadSetting extends Thread {
                 break;
         }
     }
-    
+
     public String getTemperatureInfo() {
 
         try {
