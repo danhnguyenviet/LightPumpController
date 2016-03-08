@@ -1,3 +1,13 @@
+/*
+ * MoistureActivity
+ *
+ * Version 1.0
+ *
+ * 3/8/2016
+ *
+ * Danh Nguyen
+ */
+
 package com.danh.iot;
 
 import android.app.AlertDialog;
