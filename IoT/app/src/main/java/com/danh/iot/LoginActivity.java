@@ -2,11 +2,13 @@ package com.danh.iot;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,8 +24,11 @@ import org.json.JSONObject;
 public class LoginActivity extends AppCompatActivity {
     EditText edUsername, edPassword;
     TextView tvBtnLogin;
+    CheckBox cbRemember;
 
     ProgressDialog progressDialog;
+
+    String sharedPre = "rememberLogin";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         edUsername = (EditText)findViewById(R.id.ed_login_username);
         edPassword = (EditText)findViewById(R.id.ed_login_password);
         tvBtnLogin = (TextView)findViewById(R.id.tv_login_submit);
+        cbRemember = (CheckBox)findViewById(R.id.cb_login_remember);
 
         tvBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +54,18 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        readRememberLogin();
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveRememberLogin();
+    }
 
     /**
      *Check username and password empty
@@ -98,5 +116,39 @@ public class LoginActivity extends AppCompatActivity {
         }else{
             Toast.makeText(LoginActivity.this,result,Toast.LENGTH_SHORT).show();
         }
+    }
+
+    /**
+     * Save status of Login
+     */
+    public void saveRememberLogin(){
+        SharedPreferences sharedPreferences = getSharedPreferences(sharedPre, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        String username = edUsername.getText().toString();
+        String password = edPassword.getText().toString();
+        Boolean cb = cbRemember.isChecked();
+
+        if(!cb){
+            editor.clear();
+        }else{
+            editor.putString("username",username);
+//            editor.putString("password",password);
+            editor.putBoolean("checkbox", cb);
+        }
+        editor.commit();
+    }
+
+    /**
+     * Read status of Login
+     */
+    public void readRememberLogin(){
+        SharedPreferences sharedPreferences = getSharedPreferences(sharedPre,MODE_PRIVATE);
+
+        boolean cb = sharedPreferences.getBoolean("checkbox",false);
+        if(cb){
+            edUsername.setText(sharedPreferences.getString("usename",""));
+        }
+        cbRemember.setChecked(cb);
     }
 }

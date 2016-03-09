@@ -36,6 +36,14 @@
         android:layout_marginTop="30dp"
         android:hint="Password" />
 
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remember"
+        android:id="@+id/cb_login_remember"
+        android:layout_gravity="center_horizontal"
+        android:checked="false" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
