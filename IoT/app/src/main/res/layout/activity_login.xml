@@ -4,17 +4,30 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="HONEYNET"
-        android:id="@+id/textView4"
-        android:layout_gravity="center_horizontal"
-        android:textSize="40dp"
-        android:textColor="#ff0000"
-        android:textStyle="bold"
-        android:layout_marginTop="80dp" />
+        android:layout_marginTop="80dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            android:id="@+id/imageView3"
+            android:layout_marginLeft="40dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="HONEYNET"
+            android:id="@+id/textView4"
+            android:textSize="40dp"
+            android:textColor="#ff0000"
+            android:typeface="serif"
+            android:layout_marginLeft="10dp" />
+    </LinearLayout>
 
     <EditText
         android:layout_width="wrap_content"
