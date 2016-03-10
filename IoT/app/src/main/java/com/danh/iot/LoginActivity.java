@@ -150,40 +150,6 @@ public class LoginActivity extends AppCompatActivity {
 
         boolean cb = sharedPreferences.getBoolean("checkbox",false);
         if(cb){
-            edUsername.setText(sharedPreferences.getString("username",""));
-        }
-        cbRemember.setChecked(cb);
-    }
-
-    /**
-     * Save status of Login
-     */
-    public void saveRememberLogin(){
-        SharedPreferences sharedPreferences = getSharedPreferences(sharedPre, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        String username = edUsername.getText().toString();
-        String password = edPassword.getText().toString();
-        Boolean cb = cbRemember.isChecked();
-
-        if(!cb){
-            editor.clear();
-        }else{
-            editor.putString("username",username);
-//            editor.putString("password",password);
-            editor.putBoolean("checkbox", cb);
-        }
-        editor.commit();
-    }
-
-    /**
-     * Read status of Login
-     */
-    public void readRememberLogin(){
-        SharedPreferences sharedPreferences = getSharedPreferences(sharedPre,MODE_PRIVATE);
-
-        boolean cb = sharedPreferences.getBoolean("checkbox",false);
-        if(cb){
             edUsername.setText(sharedPreferences.getString("usename",""));
         }
         cbRemember.setChecked(cb);
