@@ -43,9 +43,9 @@ public class LoginActivity extends AppCompatActivity {
         tvBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkValueInput()){
+                if (checkValueInput()) {
                     progressDialog = ProgressDialog.show(LoginActivity.this,"Login","Waiting...");
-                    ThreadLogin threadLogin = new ThreadLogin(edUsername.getText().toString(),edPassword.getText().toString(),handler);
+                    ThreadLogin threadLogin = new ThreadLogin(edUsername.getText().toString(), edPassword.getText().toString(), handler, LoginActivity.this);
                     threadLogin.start();
                 }
 
@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
             super.handleMessage(msg);
             try {
                 progressDialog.dismiss();
-                readResponse(msg.getData().getString("data").toString());
+                readResponse(msg.getData());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -104,17 +104,20 @@ public class LoginActivity extends AppCompatActivity {
      * @param data
      * @throws JSONException
      */
-    public void readResponse(String data) throws JSONException {
-        JSONObject jsonObject = new JSONObject(data);
+    public void readResponse(Bundle data) throws JSONException {
 
-        String status = jsonObject.getString("status");
-        String result = jsonObject.getString("data");
+        if(data.isEmpty()){ //Bundle is empty
+            Toast.makeText(LoginActivity.this,"Data empty!",Toast.LENGTH_SHORT).show();
+        }else {
+            String status = data.getString("status");
+            String result = data.getString("data");
 
-        if(status.equals("1")){
-            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-            startActivity(intent);
-        }else{
-            Toast.makeText(LoginActivity.this,result,Toast.LENGTH_SHORT).show();
+            if(status.equals("1")){
+                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                startActivity(intent);
+            }else{
+                Toast.makeText(LoginActivity.this,result,Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -147,7 +150,7 @@ public class LoginActivity extends AppCompatActivity {
 
         boolean cb = sharedPreferences.getBoolean("checkbox",false);
         if(cb){
-            edUsername.setText(sharedPreferences.getString("usename",""));
+            edUsername.setText(sharedPreferences.getString("username",""));
         }
         cbRemember.setChecked(cb);
     }

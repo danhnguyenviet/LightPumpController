@@ -43,5 +43,19 @@ public class IotConstant {
     public static String LOGIN_URL = "http://" + SERVER_IP_ADDRESS + "/loginIOT.php";
 
 
+    /**
+     * Account database
+     */
+    public static String FILE_ACCOUNT = "account.txt";
+    public static String USER_ACCOUNT_DEFAULT = "admin";
+    public static String PASS_ACCOUNT_DEFAULT = "honeynet.vn";
+
+    /**
+     * KEY for login
+     */
+    public static final int KEY_LOGIN_OK = 1;
+    public static final int KEY_LOGIN_WRONG_PASS = 2;
+    public static final int KEY_LOGIN_WRONG_USER = 3;
+
 
 }
