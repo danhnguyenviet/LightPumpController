@@ -57,7 +57,7 @@
             android:id="@+id/textView2"
             android:textSize="30dp"
             android:textColor="#000000"
-            android:layout_below="@+id/imageView3"
+            android:layout_below="@+id/switch1"
             android:layout_alignLeft="@+id/imageView3"
             android:layout_alignStart="@+id/imageView3" />
 
@@ -80,10 +80,9 @@
             android:text="Scheduled Time"
             android:id="@+id/textView3"
             android:textColor="#ff0000"
-            android:layout_below="@+id/switch2"
+            android:layout_below="@+id/imageView"
             android:layout_alignLeft="@+id/switch2"
-            android:layout_alignStart="@+id/switch2"
-            android:layout_marginTop="20dp" />
+            android:layout_alignStart="@+id/switch2" />
 
         <Button
             android:layout_width="wrap_content"
