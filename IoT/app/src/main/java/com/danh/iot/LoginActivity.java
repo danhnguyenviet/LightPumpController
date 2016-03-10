@@ -150,7 +150,7 @@ public class LoginActivity extends AppCompatActivity {
 
         boolean cb = sharedPreferences.getBoolean("checkbox",false);
         if(cb){
-            edUsername.setText(sharedPreferences.getString("usename",""));
+            edUsername.setText(sharedPreferences.getString("username",""));
         }
         cbRemember.setChecked(cb);
     }
