@@ -58,4 +58,11 @@ public class IotConstant {
     public static final int KEY_LOGIN_WRONG_USER = 3;
 
 
+    /**
+     * Request and result code for Activity
+     */
+    //Change password activity
+    public static final int REQUEST_CODE_ACTIVITY_CHANGE_PASSWORD = 101;
+    public static final int RESULT_CODE_ACTIVITY_CHANGE_PASSWORD = 102;
+
 }

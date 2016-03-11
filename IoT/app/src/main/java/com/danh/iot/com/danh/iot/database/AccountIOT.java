@@ -1,6 +1,7 @@
 package com.danh.iot.com.danh.iot.database;
 
 import android.app.Activity;
+import android.util.Log;
 
 import com.danh.iot.IotConstant;
 import com.danh.iot.MD5;
@@ -8,6 +9,7 @@ import com.danh.iot.MD5;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -22,8 +24,11 @@ public class AccountIOT {
     private String password;
     private Activity context;
 
+    private String currentPassword;
+    private String newPassword;
+
     /**
-     * Constructer AccountIOT
+     * Constructer AccountIOT for Login Activity
      *
      * @param username
      * @param password
@@ -35,6 +40,13 @@ public class AccountIOT {
         this.context = context;
     }
 
+    /**
+     * Constructer for Activity Change password
+     * @param context
+     */
+    public AccountIOT(Activity context){
+        this.context = context;
+    }
 
     /**
      * Read info account saved on device
@@ -76,12 +88,12 @@ public class AccountIOT {
     /**
      * Save info account to file in device
      * @param username
-     * @param password
+     * @param password type not crypt md5
      * @throws IOException
      */
     public boolean saveAccount(String username, String password) throws IOException {
 
-        FileOutputStream fileOutputStream = this.context.openFileOutput(IotConstant.FILE_ACCOUNT,this.context.MODE_PRIVATE);
+        FileOutputStream fileOutputStream = this.context.openFileOutput(IotConstant.FILE_ACCOUNT, this.context.MODE_PRIVATE);
 
         String strSave = username + "\r\n" + MD5.crypt(password);
 
@@ -91,6 +103,42 @@ public class AccountIOT {
 
         return true;
     }
+
+
+    /**
+     * Check input current password == password data. If ok is save and else.
+     * @param currentPassword
+     * @param newPassword
+     * @return true if OK else false
+     * @throws IOException
+     */
+    public boolean checkPassword(String currentPassword, String newPassword) throws IOException {
+        currentPassword = MD5.crypt(currentPassword);
+
+        File file = context.getFileStreamPath(IotConstant.FILE_ACCOUNT);
+        if(file.exists()){
+            FileInputStream fileInputStream = this.context.openFileInput(IotConstant.FILE_ACCOUNT);
+
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
+
+            String line="";
+            ArrayList<String> arrAccount = new ArrayList<>();
+
+            while((line = bufferedReader.readLine()) != null){
+                arrAccount.add(line);
+            }
+
+            fileInputStream.close();
+
+            if(arrAccount.get(1).equals(currentPassword)){
+                return saveAccount(arrAccount.get(0),newPassword);
+            }else{
+                return false;
+            }
+        }
+        return false;
+    }
+
 
 
 

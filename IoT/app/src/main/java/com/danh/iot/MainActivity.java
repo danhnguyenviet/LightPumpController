@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_action_bar,menu);
+        getMenuInflater().inflate(R.menu.menu_action_bar, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -81,12 +81,41 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.menu.menu_action_bar:
+            case R.id.menu_acction_bar_change_password:
             {
-
+                Intent intent = new Intent(MainActivity.this,ChangePasswordActivity.class);
+                startActivityForResult(intent,IotConstant.REQUEST_CODE_ACTIVITY_CHANGE_PASSWORD);
+                break;
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    /**
+     * Get result from another Activity. Base on resultCode, data do anything you want.
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //Activity Change Password
+        if(requestCode == IotConstant.REQUEST_CODE_ACTIVITY_CHANGE_PASSWORD){
+            switch (resultCode){
+                case IotConstant.RESULT_CODE_ACTIVITY_CHANGE_PASSWORD:
+                {
+                    boolean resultChanged = data.getBooleanExtra("changed",false);
+                    if(resultChanged == true){
+                        Toast.makeText(MainActivity.this,"Changed password success...",Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                }
+            }
+        }
+
     }
 
     /**

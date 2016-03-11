@@ -34,6 +34,11 @@
             android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".AboutActivity"
             android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".ChangePasswordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dialog"></activity>
+
         <activity android:name=".LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
