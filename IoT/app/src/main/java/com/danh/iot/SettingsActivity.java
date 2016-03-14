@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.danh.iot.com.danh.iot.adapter.AdapterSetting;
+import com.danh.iot.com.danh.iot.thread.ThreadSettingsFile;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,6 +35,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -44,6 +46,7 @@ public class SettingsActivity extends AppCompatActivity {
     private EditText ipAddress;
     private EditText port;
     private Button btnCancel;
+    private Button btnSave;
 
     private ListView lvListFP;
     private ArrayList<String> arrFP;
@@ -63,10 +66,56 @@ public class SettingsActivity extends AppCompatActivity {
 
         lvListFP = (ListView)findViewById(R.id.lv_setting_list_fp);
 
+        btnSave = (Button)findViewById(R.id.btn_setting_save);
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveSettingToFile();
+            }
+        });
+
 //        readSetting();
         //Read Data Setting from Server
-        readSettingFromServer();
+        readSettingFromFile();
     }
+
+    //Read Data Setting from File
+    public void readSettingFromFile(){
+        //Create progressDialog for beauty
+        progressDialog = ProgressDialog.show(SettingsActivity.this,"Loading data","Please wait...");
+
+        ThreadSettingsFile threadSettingsFile = new ThreadSettingsFile(SettingsActivity.this,handler,"read");
+        threadSettingsFile.start();
+    }
+
+
+    //Save Data Setting to File
+    public void saveSettingToFile(){
+        String sendIp = ipAddress.getText().toString();
+        String sendPort = port.getText().toString();
+
+        //Create String FP and send to Server.( FP = "1,2,3,4,5...")
+        String listFP = "";
+        for (int i = 0; i < arrFP.size(); i++) {
+            if (i == (arrFP.size() - 1)) {
+                listFP += arrFP.get(i).toString();
+                break;
+            }
+            listFP = listFP + arrFP.get(i).toString() + ",";
+
+        }
+
+        String[] strArrFP = listFP.split(",");
+
+        //Create progressDialog for beauty
+        progressDialog = ProgressDialog.show(SettingsActivity.this, "Saving data", "Please wait...");
+
+        ThreadSettingsFile threadSettingsFile = new ThreadSettingsFile(sendIp,sendPort,strArrFP,SettingsActivity.this,handler,"save");
+        threadSettingsFile.start();
+    }
+
+
 
     //Read Data Setting from Server
     public void readSettingFromServer(){
@@ -78,33 +127,26 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     //Save Data Setting to Server
-    public void sendSettingToServer(View view){
+    public void sendSettingToServer(View view) {
         String sendIp = ipAddress.getText().toString();
         String sendPort = port.getText().toString();
 
         //Create String FP and send to Server.( FP = "1,2,3,4,5...")
         String listFP = "";
-        for (int i = 0; i<arrFP.size(); i++){
-            if(i == (arrFP.size() - 1)){
+        for (int i = 0; i < arrFP.size(); i++) {
+            if (i == (arrFP.size() - 1)) {
                 listFP += arrFP.get(i).toString();
                 break;
             }
-            listFP = listFP +  arrFP.get(i).toString() + ",";
+            listFP = listFP + arrFP.get(i).toString() + ",";
 
         }
 
         //Create progressDialog for beauty
-        progressDialog = ProgressDialog.show(SettingsActivity.this,"Saving data","Please wait...");
+        progressDialog = ProgressDialog.show(SettingsActivity.this, "Saving data", "Please wait...");
 
-        ThreadSetting threadSetting = new ThreadSetting("save",sendIp,sendPort,listFP,handler);
+        ThreadSetting threadSetting = new ThreadSetting("save", sendIp, sendPort, listFP, handler);
         threadSetting.start();
-    }
-
-    //Get ip of Device
-    public String getIpOfDevice(){
-        WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
-        String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
-        return ip;
     }
 
     //Create Handler for thread and update for Screen Setting
@@ -112,8 +154,9 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            try {
-                if(msg.getData().getString("flagSetting").toString() == "read"){
+
+            //Server
+                /*if(msg.getData().getString("flagSetting").toString() == "read"){
 
                     if(msg.getData().getString("data").equals("null")){ //Data not exist on Server. Get Default Data
                         Toast.makeText(SettingsActivity.this,"Can't find data",Toast.LENGTH_SHORT).show();
@@ -124,15 +167,30 @@ public class SettingsActivity extends AppCompatActivity {
                     progressDialog.dismiss();
                 }
                 if(msg.getData().getString("flagSetting").toString() == "save"){
-//                    Toast.makeText(SettingsActivity.this,msg.getData().getString("data").toString(),Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
                     Toast.makeText(SettingsActivity.this,"Saved success...", Toast.LENGTH_SHORT).show();
 
-                }
+                }*/
 
-            } catch (JSONException e) {
-                e.printStackTrace();
+            //File
+            if(msg.getData().getString("flagSetting").toString() == "readFile"){
+                if(msg.getData().getBoolean("null",true) == true){ //Data not exist on Server. Get Default Data
+                    Toast.makeText(SettingsActivity.this,"Can't find data",Toast.LENGTH_SHORT).show();
+                    createDefaultData();
+                    Toast.makeText(SettingsActivity.this,"Create default data...",Toast.LENGTH_SHORT).show();
+                }else{
+                    readResultFromFile(msg.getData().getString("ip"),
+                            msg.getData().getString("port"),
+                            msg.getData().getStringArray("fp"));
+                }
+                progressDialog.dismiss();
             }
+            if(msg.getData().getString("flagSetting").toString() == "saveFile"){
+                progressDialog.dismiss();
+                Toast.makeText(SettingsActivity.this,"Saved success...", Toast.LENGTH_SHORT).show();
+
+            }
+
         }
     };
 
@@ -161,6 +219,19 @@ public class SettingsActivity extends AppCompatActivity {
         port.setText(resultPORT);
     }
 
+
+    public void readResultFromFile(String ip, String ports, String[] fp){
+        
+
+        //Create adapter setting
+        adapterSetting = new AdapterSetting(SettingsActivity.this,R.layout.item_list_setting,new ArrayList(Arrays.asList(fp)));
+        lvListFP.setAdapter(adapterSetting);
+
+        //Set ip and port
+        ipAddress.setText(ip);
+        port.setText(ports);
+    }
+
     //Create Default Data if Data not exist on Server
     public void createDefaultData(){
         arrFP = new ArrayList<>();
@@ -178,7 +249,7 @@ public class SettingsActivity extends AppCompatActivity {
         adapterSetting = new AdapterSetting(SettingsActivity.this, R.layout.item_list_setting, arrFP);
         lvListFP.setAdapter(adapterSetting);
 
-        ipAddress.setText(getIpOfDevice());
+        ipAddress.setText(IotConstant.getIpOfDevice(SettingsActivity.this));
         port.setText(IotConstant.PORT);
     }
 

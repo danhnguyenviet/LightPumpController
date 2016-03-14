@@ -1,5 +1,9 @@
 package com.danh.iot;
 
+import android.app.Activity;
+import android.net.wifi.WifiManager;
+import android.text.format.Formatter;
+
 /**
  * Created by Danh on 2/22/2016.
  */
@@ -11,7 +15,7 @@ public class IotConstant {
     public static String PORT           = "80";
     public static String FP1        = "1";
     public static String FP2        = "2";
-    public static String FP3        = "33";
+    public static String FP3        = "3";
     public static String FP4        = "4";
     public static String FP5        = "5";
     public static String FP6        = "6";
@@ -64,5 +68,15 @@ public class IotConstant {
     //Change password activity
     public static final int REQUEST_CODE_ACTIVITY_CHANGE_PASSWORD = 101;
     public static final int RESULT_CODE_ACTIVITY_CHANGE_PASSWORD = 102;
+
+    //File Setting
+    public static final String FILE_SETTING = "settings.txt";
+
+    //Get ip of Device
+    public static String getIpOfDevice(Activity activity){
+        WifiManager wm = (WifiManager) activity.getSystemService(activity.WIFI_SERVICE);
+        String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+        return ip;
+    }
 
 }
