@@ -36,8 +36,10 @@ public class IotConstant {
 
     public static String STARTED_TIME               = "";
     public static String STOPPED_TIME               = "";
-    public static String GET_TEMPERATURE_URL        = "http://" + SERVER_IP_ADDRESS + "/IOT_Server/get_temperature.php";
-    public static String GET_MOISTURE_URL           = "http://" + SERVER_IP_ADDRESS + "/IOT_Server/get_moisture.php";
+
+    public static String GET_TEMPERATURE_URL        = "http://" + SERVER_IP_ADDRESS + "/iot/api/get_temperature.php";
+    public static String GET_MOISTURE_URL           = "http://" + SERVER_IP_ADDRESS + "/iot/api/get_moisture.php";
+
     public static String TURN_ON_LIGHT_URL          = "http://" + SERVER_IP_ADDRESS + "/iot/api/api.php?GPIO2=ON";
     public static String TURN_OFF_LIGHT_URL         = "http://" + SERVER_IP_ADDRESS + "/iot/api/api.php?GPIO2=OFF";
     public static String TURN_ON_PUMP_URL           = "http://" + SERVER_IP_ADDRESS + "/iot/api/api.php?GPIO1=ON";
@@ -98,5 +100,4 @@ public class IotConstant {
         String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
         return ip;
     }
-    
 }

@@ -28,25 +28,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void callSystemActivity(View view) {
-        Intent intent = new Intent(this, SystemActivity.class);
+        Intent intent = new Intent(this, TabhostSystemActivity.class);
         startActivity(intent);
     }
 
-    public void callTemperatureActivity(View view) {
-        BackgroundWorker.url = IotConstant.GET_TEMPERATURE_URL;
-        backgroudWorkerForTemperature = new BackgroundWorker(this);
-        backgroudWorkerForTemperature.execute("", "", "");
-
-        Intent intent = new Intent(this, TemperatureActivity.class);
-        startActivity(intent);
-    }
-
-    public void callMoistureActivity(View view) {
-        BackgroundWorker.url = IotConstant.GET_MOISTURE_URL;
-        backgroudWorkerForMoisture = new BackgroundWorker(this);
-        backgroudWorkerForMoisture.execute("", "", "");
-
-        Intent intent = new Intent(this, MoistureActivity.class);
+    public void callTemperatureMoistureActivity(View view) {
+        Intent intent = new Intent(this, TemperatureMoistureActivity.class);
         startActivity(intent);
     }
 

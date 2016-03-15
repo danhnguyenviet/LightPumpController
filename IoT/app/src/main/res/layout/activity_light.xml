@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LightPump.LightActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Light System"
+        android:id="@+id/tvLightSystem"
+        android:layout_marginTop="0dp"
+        android:textSize="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:textColor="#000000" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivLightIcon"
+        android:src="@mipmap/ic_light"
+        android:layout_below="@+id/tvLightSystem"
+        android:layout_alignLeft="@+id/tvLightSystem"
+        android:layout_alignStart="@+id/tvLightSystem" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="   "
+        android:id="@+id/switch1"
+        android:textColor="#ff0000"
+        android:checked="false"
+        android:layout_below="@+id/tvLightSystem"
+        android:layout_toRightOf="@+id/ivLightIcon"
+        android:layout_toEndOf="@+id/ivLightIcon"
+        android:layout_marginTop="10dp">
+    </Switch>
+
+</RelativeLayout>

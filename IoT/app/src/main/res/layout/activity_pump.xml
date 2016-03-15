@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LightPump.PumpActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pump System"
+        android:id="@+id/tvLocationTemperature"
+        android:textSize="30dp"
+        android:textColor="#000000"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="   "
+        android:id="@+id/swPump"
+        android:textColor="#ff0000"
+        android:checked="false"
+        android:layout_below="@+id/tvLocationTemperature"
+        android:layout_toRightOf="@+id/ivPumpIcon"
+        android:layout_toEndOf="@+id/ivPumpIcon"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Scheduled Time"
+        android:id="@+id/tvSheduledTime"
+        android:textColor="#ff0000"
+        android:layout_below="@+id/ivPumpIcon"
+        android:layout_alignLeft="@+id/swPump"
+        android:layout_alignStart="@+id/swPump" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set Started Time"
+        android:id="@+id/btnStartedTime"
+        android:layout_below="@+id/tvSheduledTime"
+        android:layout_alignLeft="@+id/tvSheduledTime"
+        android:layout_alignStart="@+id/tvSheduledTime" />
+
+    <TextClock
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tcStartedTime"
+        android:clickable="false"
+        android:textSize="20dp"
+        android:layout_below="@+id/btnStartedTime"
+        android:layout_alignLeft="@+id/btnStartedTime"
+        android:layout_alignStart="@+id/btnStartedTime" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set Stopped Time"
+        android:id="@+id/btnStoppedTime"
+        android:layout_below="@+id/tcStartedTime"
+        android:layout_alignLeft="@+id/tcStartedTime"
+        android:layout_alignStart="@+id/tcStartedTime" />
+
+    <TextClock
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tcStoppedTime"
+        android:clickable="false"
+        android:textSize="20dp"
+        android:layout_below="@+id/btnStoppedTime"
+        android:layout_alignLeft="@+id/btnStoppedTime"
+        android:layout_alignStart="@+id/btnStoppedTime" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Apply"
+        android:id="@+id/btnSheduledApply"
+        android:layout_below="@+id/tcStoppedTime"
+        android:layout_alignLeft="@+id/tcStoppedTime"
+        android:layout_alignStart="@+id/tcStoppedTime" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Max Value"
+        android:id="@+id/tvMaxValue"
+        android:textColor="#ff0000"
+        android:layout_below="@+id/btnSheduledApply"
+        android:layout_alignLeft="@+id/tvSheduledTime"
+        android:layout_alignStart="@+id/tvSheduledTime" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/etMaxValue"
+        android:layout_below="@+id/tvMaxValue"
+        android:layout_alignLeft="@+id/btnSheduledApply"
+        android:layout_alignStart="@+id/btnSheduledApply"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Apply"
+        android:id="@+id/btnMaxValueApply"
+        android:layout_below="@+id/etMaxValue"
+        android:layout_alignLeft="@+id/etMaxValue"
+        android:layout_alignStart="@+id/etMaxValue" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivPumpIcon"
+        android:src="@mipmap/ic_pump"
+        android:layout_below="@+id/tvLocationTemperature"
+        android:layout_alignLeft="@+id/tvLocationTemperature"
+        android:layout_alignStart="@+id/tvLocationTemperature" />
+
+</RelativeLayout>

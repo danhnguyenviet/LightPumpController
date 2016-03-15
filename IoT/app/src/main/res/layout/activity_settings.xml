@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="IP Address"
-                    android:id="@+id/textView3"
+                    android:id="@+id/tvSheduledTime"
                     android:textColor="#ff0000"
                     android:textSize="15sp"
                     android:layout_below="@+id/textView1" />
