@@ -17,6 +17,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
             android:id="@+id/tv_guide_content"
-            android:typeface="serif" />
+            android:typeface="serif"
+            android:textSize="14dp" />
     </ScrollView>
 </LinearLayout>

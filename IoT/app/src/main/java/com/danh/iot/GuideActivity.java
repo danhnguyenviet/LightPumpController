@@ -25,9 +25,14 @@ public class GuideActivity extends AppCompatActivity {
     protected String setContent(){
         return new String(
                 "<b>[Change password]</b><br/>" +
-                        "- Touch menu (Right corner of the screen), touch <b>Change password</b><br/>" +
+                        "- Main screen, touch menu (Right corner of the screen), touch <b>Change password</b><br/>" +
                         "- Enter <b>Current password</b>, <b>New password</b> and <b>Confirm password</b><br/>" +
-                        "- Touch <b>Change password</b> button to save or <b>Cancel</b> button to exit screen<br/>"
+                        "- Touch <b>Change password</b> button to save or <b>Cancel</b> button to exit<br/>" +
+
+                        "<b><br/>[Settings]</b><br/>" +
+                        "- Main screen, touch <b>SETTINGS</b> button<br/>" +
+                        "- Change <b>Port</b>, list <b>F</b><br/>" +
+                        "- Touch <b>Save</b> button to save settings or <b>Cancel</b> button to exit<br/>"
         );
     }
 }
