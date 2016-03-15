@@ -12,6 +12,8 @@ import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import org.w3c.dom.Text;
+
 import java.util.Calendar;
 
 /**
@@ -65,8 +67,10 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
     public void onTimeSet(TimePicker view, int hourOfDay, int minute){
         //Do something with the user chosen time
         //Get reference of host activity (XML Layout File) TextView widget
-        TextClock tc0 = (TextClock) getActivity().findViewById(R.id.textClock);
-        TextClock tc1 = (TextClock) getActivity().findViewById(R.id.textClock2);
+//        TextClock tc0 = (TextClock) getActivity().findViewById(R.id.textClock);
+//        TextClock tc1 = (TextClock) getActivity().findViewById(R.id.textClock2);
+        TextView tv0 = (TextView) getActivity().findViewById(R.id.tvStartedTime);
+        TextView tv1 = (TextView) getActivity().findViewById(R.id.tvStoppedTime);
         //Set a message for user
 
         String format = "";
@@ -85,9 +89,17 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         }
 
         if (SystemActivity.numOfTextClock.equals(0)) {
-            tc0.setText(String.valueOf(hourOfDay) + ":" + String.valueOf(minute) + format);
+            if (minute >= 10) {
+                tv0.setText(String.valueOf(hourOfDay) + ":" + minute + format);
+            } else {
+                tv0.setText(String.valueOf(hourOfDay) + ":0" + minute + format);
+            }
         } else if (SystemActivity.numOfTextClock.equals(1)) {
-            tc1.setText(String.valueOf(hourOfDay) + ":" + String.valueOf(minute) + format);
+            if (minute >= 10) {
+                tv1.setText(String.valueOf(hourOfDay) + ":" + minute + format);
+            } else {
+                tv1.setText(String.valueOf(hourOfDay) + ":0" + minute + format);
+            }
         }
 
     }

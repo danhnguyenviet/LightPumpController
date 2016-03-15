@@ -1,8 +1,11 @@
 package com.danh.iot;
 
+import android.app.AlertDialog;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +15,15 @@ import android.widget.Switch;
 import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * Created by Danh on 2/20/2016.
@@ -29,6 +41,8 @@ public class SystemActivity extends AppCompatActivity {
     private TextClock tcStoppedTime;
     private Button btnTimeApply;
     private Button btnMaxValueApply;
+    private TextView tvStartedTime;
+    private TextView tvStoppedTime;
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -50,6 +64,8 @@ public class SystemActivity extends AppCompatActivity {
         tcStoppedTime = (TextClock) findViewById(R.id.textClock2);;
         btnTimeApply = (Button) findViewById(R.id.button3);
         btnMaxValueApply = (Button) findViewById(R.id.button4);
+        tvStartedTime = (TextView) findViewById(R.id.tvStartedTime);
+        tvStoppedTime = (TextView) findViewById(R.id.tvStoppedTime);
 
         sLightAction.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -57,17 +73,21 @@ public class SystemActivity extends AppCompatActivity {
                 if (isChecked) {
                     if (checkInternetConenction()) {
 
-                        BackgroundWorker.url = IotConstant.TURN_ON_LIGHT_URL;
-                        BackgroundWorker backgroundWorker = new BackgroundWorker(getApplicationContext());
-                        backgroundWorker.execute("", "", "");
+//                        BackgroundWorker.url = IotConstant.TURN_ON_LIGHT_URL;
+//                        BackgroundWorker backgroundWorker = new BackgroundWorker(getApplicationContext());
+//                        backgroundWorker.execute("", "", "");
+
+                        sendGETRequest(IotConstant.TURN_ON_LIGHT_URL);
 
                     }
                 } else {
                     if (checkInternetConenction()) {
 
-                        BackgroundWorker.url = IotConstant.TURN_OFF_LIGHT_URL;
-                        BackgroundWorker backgroundWorker = new BackgroundWorker(getApplicationContext());
-                        backgroundWorker.execute("", "", "");
+//                        BackgroundWorker.url = IotConstant.TURN_OFF_LIGHT_URL;
+//                        BackgroundWorker backgroundWorker = new BackgroundWorker(getApplicationContext());
+//                        backgroundWorker.execute("", "", "");
+
+                        sendGETRequest(IotConstant.TURN_OFF_LIGHT_URL);
 
                     }
                 }
@@ -80,17 +100,21 @@ public class SystemActivity extends AppCompatActivity {
                 if (isChecked) {
                     if (checkInternetConenction()) {
 
-                        BackgroundWorker.url = IotConstant.TURN_ON_PUMP_URL;
-                        BackgroundWorker backgroundWorker = new BackgroundWorker(getApplicationContext());
-                        backgroundWorker.execute("", "", "");
+//                        BackgroundWorker.url = IotConstant.TURN_ON_PUMP_URL;
+//                        BackgroundWorker backgroundWorker = new BackgroundWorker(getApplicationContext());
+//                        backgroundWorker.execute("", "", "");
+
+                        sendGETRequest(IotConstant.TURN_ON_PUMP_URL);
 
                     }
                 } else {
                     if (checkInternetConenction()) {
 
-                        BackgroundWorker.url = IotConstant.TURN_OFF_PUMP_URL;
-                        BackgroundWorker backgroundWorker = new BackgroundWorker(getApplicationContext());
-                        backgroundWorker.execute("", "", "");
+//                        BackgroundWorker.url = IotConstant.TURN_OFF_PUMP_URL;
+//                        BackgroundWorker backgroundWorker = new BackgroundWorker(getApplicationContext());
+//                        backgroundWorker.execute("", "", "");
+
+                        sendGETRequest(IotConstant.TURN_OFF_PUMP_URL);
 
                     }
                 }
@@ -118,14 +142,29 @@ public class SystemActivity extends AppCompatActivity {
         btnTimeApply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if ((tvStartedTime.getText().toString().indexOf("AM") != -1) ||
+                        (tvStoppedTime.getText().toString().indexOf("PM")) != -1) {
+//                BackgroundWorker.url = IotConstant.SCHEDULE_FOR_MOBILE_URL;
+                    String baseStartedTime = tvStartedTime.getText().toString();
+                    String tempStartedTime[] = baseStartedTime.split(" ");
+                    String startedTime = tempStartedTime[0] + ":" + tempStartedTime[1];
 
-                BackgroundWorker.url = IotConstant.SCHEDULE_FOR_MOBILE_URL;
-                String startedTime = tcStartedTime.getText().toString();
-                String stoppedTime = tcStoppedTime.getText().toString();
+                    String baseStoppedTime = tvStoppedTime.getText().toString();
+                    String tempStoppedTime[] = baseStoppedTime.split(" ");
+                    String stoppedTime = tempStoppedTime[0] + ":" + tempStoppedTime[1];
 
-                BackgroundWorker backgroudBackgroundWorker = new BackgroundWorker(getApplicationContext());
-                backgroudBackgroundWorker.execute("", startedTime, stoppedTime);
+//                BackgroundWorker backgroudBackgroundWorker = new BackgroundWorker(getApplicationContext());
+//                backgroudBackgroundWorker.execute("", startedTime, stoppedTime);
 
+                    IotConstant.STARTED_TIME = startedTime;
+                    IotConstant.STOPPED_TIME = stoppedTime;
+
+                    IotConstant.refresh();
+                    sendGETRequest(IotConstant.SCHEDULE_PUMP);
+                    Toast.makeText(SystemActivity.this, "Apply success", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(SystemActivity.this, "You must set started and stopped time", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -179,6 +218,75 @@ public class SystemActivity extends AppCompatActivity {
             return false;
         }
         return false;
+    }
+
+    private InputStream openHttpConnection(String urlStr) {
+        InputStream in = null;
+        int resCode = -1;
+
+        try {
+            URL url = new URL(urlStr);
+            URLConnection urlConn = url.openConnection();
+
+            if (!(urlConn instanceof HttpURLConnection)) {
+                throw new IOException("URL is not an Http URL");
+            }
+            HttpURLConnection httpConn = (HttpURLConnection) urlConn;
+            httpConn.setAllowUserInteraction(false);
+            httpConn.setInstanceFollowRedirects(true);
+            httpConn.setRequestMethod("GET");
+            httpConn.connect();
+
+            resCode = httpConn.getResponseCode();
+
+            if (resCode == HttpURLConnection.HTTP_OK) {
+                in = httpConn.getInputStream();
+            }
+        }
+
+        catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return in;
+    }
+
+    private void sendGETRequest(String urlStr) {
+
+        final String url = urlStr;
+
+        new Thread() {
+            public void run() {
+                InputStream in = null;
+
+                Message msg = Message.obtain();
+                msg.what = 1;
+
+                try {
+                    in = openHttpConnection(url);
+
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
+                    String line = "", content = "";
+                    while((line = bufferedReader.readLine()) != null) {
+                        content += line;
+                    }
+
+                    if (content == "")
+                        System.out.println("Test 1 - null");
+
+                    in.close();
+                }
+
+                catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+//                messageHandler.sendMessage(msg);
+            }
+        }.start();
+
     }
 
 }
