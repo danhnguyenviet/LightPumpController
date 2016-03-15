@@ -2,6 +2,7 @@ package com.danh.iot;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,13 @@ import com.danh.iot.R;
 /**
  * Created by Danh on 3/14/2016.
  */
-public class TabhostSystemActivity extends Activity {
+public class TabhostSystemActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tabhost_system);
 
-//        loadTabs();
+        loadTabs();
     }
 
     public void loadTabs()
@@ -26,7 +28,7 @@ public class TabhostSystemActivity extends Activity {
         //Lấy Tabhost id ra trước (cái này của built - in android
         final TabHost tab = (TabHost) findViewById(android.R.id.tabhost);
         //gọi lệnh setup
-//        tab.setup();
+        tab.setup();
         TabHost.TabSpec spec;
         //Tạo tab1
         spec = tab.newTabSpec("t1");
