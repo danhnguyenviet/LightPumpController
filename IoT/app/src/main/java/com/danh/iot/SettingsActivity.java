@@ -221,10 +221,10 @@ public class SettingsActivity extends AppCompatActivity {
 
 
     public void readResultFromFile(String ip, String ports, String[] fp){
-        
+        arrFP = new ArrayList(Arrays.asList(fp));
 
         //Create adapter setting
-        adapterSetting = new AdapterSetting(SettingsActivity.this,R.layout.item_list_setting,new ArrayList(Arrays.asList(fp)));
+        adapterSetting = new AdapterSetting(SettingsActivity.this,R.layout.item_list_setting,arrFP);
         lvListFP.setAdapter(adapterSetting);
 
         //Set ip and port
