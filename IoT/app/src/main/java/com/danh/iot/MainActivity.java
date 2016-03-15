@@ -87,6 +87,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent,IotConstant.REQUEST_CODE_ACTIVITY_CHANGE_PASSWORD);
                 break;
             }
+            case R.id.menu_action_bar_guide:
+            {
+                Intent intent = new Intent(MainActivity.this,GuideActivity.class);
+                startActivity(intent);
+                break;
+            }
         }
         return super.onOptionsItemSelected(item);
     }

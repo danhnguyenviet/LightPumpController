@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/menu_acction_bar_change_password"
-        android:title="@string/action_bar_change_pass"></item>
+        android:title="@string/menu_item_change_password"></item>
+    <item android:id="@+id/menu_action_bar_guide"
+        android:title="@string/menu_item_guide"></item>
 
 </menu>
