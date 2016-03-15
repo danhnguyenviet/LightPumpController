@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void callSystemActivity(View view) {
-        Intent intent = new Intent(this, SystemActivity.class);
+        Intent intent = new Intent(this, TabhostSystemActivity.class);
         startActivity(intent);
     }
 

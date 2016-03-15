@@ -10,7 +10,6 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextClock;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -41,14 +40,14 @@ public class SystemActivity extends AppCompatActivity {
 
         getWindow().getDecorView().clearFocus();
 
-        etMaxValue = (EditText) findViewById(R.id.editText2);
+        etMaxValue = (EditText) findViewById(R.id.etMaxValue);
         sLightAction = (Switch) findViewById(R.id.switch1);
-        sPumpAction = (Switch) findViewById(R.id.switch2);
-        btnStartedTime = (Button) findViewById(R.id.button);
-        tcStartedTime = (TextClock) findViewById(R.id.textClock);
-        btnStoppedTime = (Button) findViewById(R.id.button2);
-        tcStoppedTime = (TextClock) findViewById(R.id.textClock2);;
-        btnTimeApply = (Button) findViewById(R.id.button3);
+        sPumpAction = (Switch) findViewById(R.id.swPump);
+        btnStartedTime = (Button) findViewById(R.id.btnStartedTime);
+        tcStartedTime = (TextClock) findViewById(R.id.tcStartedTime);
+        btnStoppedTime = (Button) findViewById(R.id.btnStoppedTime);
+        tcStoppedTime = (TextClock) findViewById(R.id.tcStoppedTime);;
+        btnTimeApply = (Button) findViewById(R.id.btnSheduledApply);
         btnMaxValueApply = (Button) findViewById(R.id.button4);
 
         sLightAction.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

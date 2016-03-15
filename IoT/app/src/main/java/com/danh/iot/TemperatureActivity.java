@@ -1,7 +1,5 @@
 package com.danh.iot;
 
-import android.app.AlertDialog;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,12 +10,8 @@ import android.widget.Toast;
 
 import com.danh.iot.com.danh.iot.thread.ThreadSetting;
 
-import org.json.JSONException;
-
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -38,7 +32,7 @@ public class TemperatureActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temperature);
 
-        tvLocation      = (TextView) findViewById(R.id.textView2);
+        tvLocation      = (TextView) findViewById(R.id.tvPumpSystem);
         tvDate          = (TextView) findViewById(R.id.textView7);
         tvTime          = (TextView) findViewById(R.id.textView9);
         tvTemperature   = (TextView) findViewById(R.id.textView111);

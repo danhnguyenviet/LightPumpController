@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.Gravity;
@@ -65,8 +64,8 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
     public void onTimeSet(TimePicker view, int hourOfDay, int minute){
         //Do something with the user chosen time
         //Get reference of host activity (XML Layout File) TextView widget
-        TextClock tc0 = (TextClock) getActivity().findViewById(R.id.textClock);
-        TextClock tc1 = (TextClock) getActivity().findViewById(R.id.textClock2);
+        TextClock tc0 = (TextClock) getActivity().findViewById(R.id.tcStartedTime);
+        TextClock tc1 = (TextClock) getActivity().findViewById(R.id.tcStoppedTime);
         //Set a message for user
 
         String format = "";
