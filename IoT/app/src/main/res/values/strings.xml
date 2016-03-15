@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name" fontfamily="">HONEYNET IoT Controller</string>
-    <string name="action_bar_change_pass" >Change password</string>
+    <string name="action_bar_change_pass">Change password</string>
 </resources>

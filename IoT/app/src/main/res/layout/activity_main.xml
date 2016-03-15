@@ -24,19 +24,10 @@
         <Button
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Temperature"
+            android:text="Temp &amp; Mois"
             android:id="@+id/btnTemperature"
-            android:onClick="callTemperatureActivity"
+            android:onClick="callTemperatureMoistureActivity"
             android:layout_below="@+id/btnSystem"
-            android:layout_centerHorizontal="true" />
-
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="Moisture"
-            android:id="@+id/btnMoisture"
-            android:onClick="callMoistureActivity"
-            android:layout_below="@+id/btnTemperature"
             android:layout_centerHorizontal="true" />
 
         <TextView
@@ -49,7 +40,8 @@
             android:layout_marginTop="40dp"
             android:textSize="25sp"
             android:textColor="#ef1010"
-            android:typeface="serif" />
+            android:typeface="serif"
+            android:layout_gravity="center"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -70,7 +62,8 @@
             android:src="@mipmap/ic_launcher"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
-            android:layout_toLeftOf="@id/textView"/>
+            android:layout_toLeftOf="@id/textView"
+            android:layout_gravity="center"/>
 
         <Button
             android:layout_width="150dp"
@@ -78,8 +71,8 @@
             android:text="Settings"
             android:id="@+id/button5"
             android:onClick="callSettingActivity"
-            android:layout_below="@+id/btnMoisture"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/btnTemperature" />
 
         <Button
             android:layout_width="150dp"

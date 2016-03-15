@@ -118,7 +118,7 @@ public class SystemActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                BackgroundWorker.url = IotConstant.SCHEDULE_FOR_MOBILE_URL;
+                BackgroundWorker.url = IotConstant.SCHEDULE_PUMP;
                 String startedTime = tcStartedTime.getText().toString();
                 String stoppedTime = tcStoppedTime.getText().toString();
 
