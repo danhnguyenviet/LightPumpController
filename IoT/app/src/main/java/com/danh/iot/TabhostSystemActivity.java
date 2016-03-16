@@ -141,8 +141,7 @@ public class TabhostSystemActivity extends AppCompatActivity {
     /**
      * Load tabs in tabhost
      */
-    public void loadTabs()
-    {
+    public void loadTabs() {
         //Lấy Tabhost id ra trước (cái này của built - in android
         final TabHost tab = (TabHost) findViewById(android.R.id.tabhost);
         //gọi lệnh setup
