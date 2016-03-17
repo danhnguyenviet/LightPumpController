@@ -9,21 +9,19 @@ import android.text.format.Formatter;
  */
 public class IotConstant {
 
-    public static String DATA_IP_ADDRESS     = "mysql.hostinger.vn";
-    // public static String SERVER_IP_ADDRESS     = "demoiot.esy.es";
     public static String SERVER_IP_ADDRESS   = "192.168.238.239:8080";
 
-    public static String PORT       = "80";
-    public static String FP1        = "1";
-    public static String FP2        = "2";
-    public static String FP3        = "3";
-    public static String FP4        = "4";
-    public static String FP5        = "5";
-    public static String FP6        = "6";
-    public static String FP7        = "7";
-    public static String FP8        = "8";
-    public static String FP9        = "9";
-    public static String FP10       = "10";
+    public static String PORT       = "8080";
+    public static String FP1        = "GPIO1";
+    public static String FP2        = "GPIO2";
+    public static String FP3        = "GPIO3";
+    public static String FP4        = "GPIO4";
+    public static String FP5        = "GPIO5";
+    public static String FP6        = "GPIO6";
+    public static String FP7        = "GPIO7";
+    public static String FP8        = "GPIO8";
+    public static String FP9        = "GPIO9";
+    public static String FP10       = "GPIO10";
 
     public static String STARTED_TIME               = "";
     public static String STOPPED_TIME               = "";
