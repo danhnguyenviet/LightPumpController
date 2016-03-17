@@ -34,7 +34,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... params) {
         String type = params[0];
 
-        if (BackgroundWorker.url.equals(IotConstant.SCHEDULE_FOR_MOBILE_URL)) {
+        if (BackgroundWorker.url.equals(IotConstant.SCHEDULE_PUMP)) {
             try {
                 String startedTime = params[1];
                 String stoppedTime = params[2];
@@ -113,7 +113,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             MainActivity.temperatureInfo = result;
         } else if (BackgroundWorker.url.equals(IotConstant.GET_MOISTURE_URL)) {
             MainActivity.moistureInfo = result;
-        } else if (BackgroundWorker.url.equals(IotConstant.SCHEDULE_FOR_MOBILE_URL)) {
+        } else if (BackgroundWorker.url.equals(IotConstant.SCHEDULE_PUMP)) {
 
         }
     }

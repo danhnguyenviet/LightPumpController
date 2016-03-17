@@ -5,8 +5,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Temperature"
-        android:id="@+id/tvMoisture"
+        android:text="Humidity"
+        android:id="@+id/tvHumidity"
         android:layout_marginTop="30dp"
         android:textSize="30dp"
         android:layout_marginLeft="30dp"
@@ -20,10 +20,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Location:"
-        android:id="@+id/tvLocationTemperature"
-        android:layout_below="@+id/tvMoisture"
-        android:layout_alignLeft="@+id/tvMoisture"
-        android:layout_alignStart="@+id/tvMoisture"
+        android:id="@+id/tvLocationHumidity"
+        android:layout_below="@+id/tvHumidity"
+        android:layout_alignLeft="@+id/tvHumidity"
+        android:layout_alignStart="@+id/tvHumidity"
         android:textSize="20dp"/>
 
     <TextView
@@ -32,16 +32,16 @@
         android:text="Date"
         android:id="@+id/textView6"
         android:textSize="20dp"
-        android:layout_below="@+id/tvLocationTemperature"
-        android:layout_alignLeft="@+id/tvLocationTemperature"
-        android:layout_alignStart="@+id/tvLocationTemperature"
+        android:layout_below="@+id/tvLocationHumidity"
+        android:layout_alignLeft="@+id/tvLocationHumidity"
+        android:layout_alignStart="@+id/tvLocationHumidity"
         android:layout_marginTop="30dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="null"
-        android:id="@+id/tvDateTemperature"
+        android:id="@+id/tvDateHumidity"
         android:textSize="20dp"
         android:layout_below="@+id/textView6"
         android:layout_alignLeft="@+id/textView6"
@@ -55,15 +55,15 @@
         android:id="@+id/textView8"
         android:textSize="20dp"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/tvDateTemperature"
-        android:layout_alignLeft="@+id/tvDateTemperature"
-        android:layout_alignStart="@+id/tvDateTemperature" />
+        android:layout_below="@+id/tvDateHumidity"
+        android:layout_alignLeft="@+id/tvDateHumidity"
+        android:layout_alignStart="@+id/tvDateHumidity" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="null"
-        android:id="@+id/tvTimeTemperature"
+        android:id="@+id/tvTimeHumidity"
         android:textSize="20dp"
         android:layout_below="@+id/textView8"
         android:layout_alignLeft="@+id/textView8"
@@ -73,19 +73,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Temperature"
+        android:text="Humidity"
         android:id="@+id/textView10"
         android:textSize="20dp"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/tvTimeTemperature"
-        android:layout_alignLeft="@+id/tvTimeTemperature"
-        android:layout_alignStart="@+id/tvTimeTemperature" />
+        android:layout_below="@+id/tvTimeHumidity"
+        android:layout_alignLeft="@+id/tvTimeHumidity"
+        android:layout_alignStart="@+id/tvTimeHumidity" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="null"
-        android:id="@+id/tvTemperatureValue"
+        android:id="@+id/tvHumidityValue"
         android:textSize="20dp"
         android:layout_below="@+id/textView10"
         android:layout_alignLeft="@+id/textView10"

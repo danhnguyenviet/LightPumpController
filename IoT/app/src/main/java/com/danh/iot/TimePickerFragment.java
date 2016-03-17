@@ -12,6 +12,8 @@ import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import org.w3c.dom.Text;
+
 import java.util.Calendar;
 
 /**
@@ -27,21 +29,6 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         int minute = c.get(Calendar.MINUTE);
 
         //Create and return a new instance of TimePickerDialog
-        /*
-            public constructor.....
-            TimePickerDialog(Context context, int theme,
-             TimePickerDialog.OnTimeSetListener callBack, int hourOfDay, int minute, boolean is24HourView)
-
-            The 'theme' parameter allow us to specify the theme of TimePickerDialog
-
-            .......List of Themes.......
-            THEME_DEVICE_DEFAULT_DARK
-            THEME_DEVICE_DEFAULT_LIGHT
-            THEME_HOLO_DARK
-            THEME_HOLO_LIGHT
-            THEME_TRADITIONAL
-
-         */
         TimePickerDialog tpd = new TimePickerDialog(getActivity(), AlertDialog.THEME_DEVICE_DEFAULT_DARK
                 ,this, hour, minute, DateFormat.is24HourFormat(getActivity()));
 
@@ -51,7 +38,6 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         /*.........Set a custom title for picker........*/
         TextView tvTitle = new TextView(getActivity());
         tvTitle.setText("Set Time");
-//        tvTitle.setBackgroundColor(Color.parseColor("#EEE8AA"));
         tvTitle.setPadding(5, 3, 5, 3);
         tvTitle.setGravity(Gravity.CENTER_HORIZONTAL);
         tpd.setCustomTitle(tvTitle);
@@ -65,8 +51,9 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
     public void onTimeSet(TimePicker view, int hourOfDay, int minute){
         //Do something with the user chosen time
         //Get reference of host activity (XML Layout File) TextView widget
-        TextClock tc0 = (TextClock) getActivity().findViewById(R.id.textClock);
-        TextClock tc1 = (TextClock) getActivity().findViewById(R.id.textClock2);
+
+        TextView tv0 = (TextView) getActivity().findViewById(R.id.tvStartedTime);
+        TextView tv1 = (TextView) getActivity().findViewById(R.id.tvStoppedTime);
         //Set a message for user
 
         String format = "";
@@ -84,10 +71,18 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
             format = " AM";
         }
 
-        if (SystemActivity.numOfTextClock.equals(0)) {
-            tc0.setText(String.valueOf(hourOfDay) + ":" + String.valueOf(minute) + format);
-        } else if (SystemActivity.numOfTextClock.equals(1)) {
-            tc1.setText(String.valueOf(hourOfDay) + ":" + String.valueOf(minute) + format);
+        if (TabhostSystemActivity.numOfClock.equals(0)) {
+            if (minute >= 10) {
+                tv0.setText(String.valueOf(hourOfDay) + ":" + minute + format);
+            } else {
+                tv0.setText(String.valueOf(hourOfDay) + ":0" + minute + format);
+            }
+        } else if (TabhostSystemActivity.numOfClock.equals(1)) {
+            if (minute >= 10) {
+                tv1.setText(String.valueOf(hourOfDay) + ":" + minute + format);
+            } else {
+                tv1.setText(String.valueOf(hourOfDay) + ":0" + minute + format);
+            }
         }
 
     }
