@@ -140,6 +140,14 @@ public class AccountIOT {
     }
 
 
+    public void checkSetDefaultDataLogin() throws IOException {
+        File file = context.getFileStreamPath(IotConstant.FILE_ACCOUNT);
+        if(!file.exists()){
+            saveAccount(IotConstant.USER_ACCOUNT_DEFAULT, IotConstant.PASS_ACCOUNT_DEFAULT);
+        }
+    }
+
+
 
 
 }

@@ -59,6 +59,11 @@ public class ThreadLogin extends Thread {
     public void sendDataLogin() throws IOException {
 
         AccountIOT accountIOT = new AccountIOT(this.username,this.password,this.context);
+
+        //Check file account not exist to create
+        accountIOT.checkSetDefaultDataLogin();
+
+        //Result login
         int resultLogin = accountIOT.readAccount();
         bundle = new Bundle();
 
