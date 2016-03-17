@@ -29,6 +29,11 @@ public class ParameterInfoActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parameter_info);
 
+        // Refresh settings information
+        if (InteractingFile.isExist(this.getApplicationContext(), IotConstant.FILE_SETTING)) {
+            IotConstant.refreshSettingsInfo(this.getApplicationContext(), IotConstant.FILE_SETTING);
+        }
+
         loadTabs();
         loadControlls();
         readTemperatureFromServer();

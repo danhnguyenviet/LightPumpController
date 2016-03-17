@@ -49,6 +49,11 @@ public class TabhostSystemActivity extends AppCompatActivity {
         loadControlls();
         loadTabs();
 
+        // Refresh settings information
+        if (InteractingFile.isExist(this.getApplicationContext(), IotConstant.FILE_SETTING)) {
+            IotConstant.refreshSettingsInfo(this.getApplicationContext(), IotConstant.FILE_SETTING);
+        }
+
         swLight.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
