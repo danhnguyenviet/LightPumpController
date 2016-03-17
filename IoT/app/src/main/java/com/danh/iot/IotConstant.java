@@ -21,15 +21,6 @@ public class IotConstant {
     public static String FP9        = "9";
     public static String FP10       = "10";
 
-
-//    public static String GET_TEMPERATURE_URL        = "http://" + SERVER_IP_ADDRESS + "/IOT_Server/get_temperature.php";
-//    public static String GET_MOISTURE_URL           = "http://" + SERVER_IP_ADDRESS + "/IOT_Server/get_moisture.php";
-//    public static String TURN_ON_LIGHT_URL          = "http://" + SERVER_IP_ADDRESS + "/IOT_Server/turn_on_light.php";
-//    public static String TURN_OFF_LIGHT_URL         = "http://" + SERVER_IP_ADDRESS + "/IOT_Server/turn_off_light.php";
-//    public static String TURN_ON_PUMP_URL           = "http://" + SERVER_IP_ADDRESS + "/IOT_Server/turn_on_pump.php";
-//    public static String TURN_OFF_PUMP_URL          = "http://" + SERVER_IP_ADDRESS + "/IOT_Server/turn_off_pump.php";
-//    public static String SCHEDULE_FOR_MOBILE_URL    = "http://" + SERVER_IP_ADDRESS + "/IOT_Server/schedule_for_mobile.php";
-
     public static String STARTED_TIME               = "";
     public static String STOPPED_TIME               = "";
     public static String GET_TEMPERATURE_URL        = "http://" + SERVER_IP_ADDRESS + "/iot/api/get_temperature.php";
@@ -38,7 +29,7 @@ public class IotConstant {
     public static String TURN_OFF_LIGHT_URL         = "http://" + SERVER_IP_ADDRESS + "/iot/api/api.php?GPIO2=OFF";
     public static String TURN_ON_PUMP_URL           = "http://" + SERVER_IP_ADDRESS + "/iot/api/api.php?GPIO1=ON";
     public static String TURN_OFF_PUMP_URL          = "http://" + SERVER_IP_ADDRESS + "/iot/api/api.php?GPIO1=OFF";
-    public static String SCHEDULE_PUMP    = "http://" + SERVER_IP_ADDRESS + "/iot/api/api.php?startON=" +
+    public static String SCHEDULE_PUMP              = "http://" + SERVER_IP_ADDRESS + "/iot/api/api.php?startON=" +
             STARTED_TIME + "&stopOFF=" + STOPPED_TIME;
 
     public static String BR_STRING = "<br/>";
@@ -50,24 +41,24 @@ public class IotConstant {
      * Code on database
      * Temp ip address
      */
-    public static String READ_DATA_SETTING_URL = "http://" + SERVER_IP_ADDRESS + "/readSettingIOT.php";
-    public static String SAVE_DATA_SETTING_URL = "http://" + SERVER_IP_ADDRESS + "/saveSettingIOT.php";
-    public static String LOGIN_URL = "http://" + SERVER_IP_ADDRESS + "/loginIOT.php";
+    public static String READ_DATA_SETTING_URL  = "http://" + SERVER_IP_ADDRESS + "/readSettingIOT.php";
+    public static String SAVE_DATA_SETTING_URL  = "http://" + SERVER_IP_ADDRESS + "/saveSettingIOT.php";
+    public static String LOGIN_URL              = "http://" + SERVER_IP_ADDRESS + "/loginIOT.php";
 
 
     /**
      * Account database
      */
-    public static String FILE_ACCOUNT = "account.txt";
-    public static String USER_ACCOUNT_DEFAULT = "admin";
-    public static String PASS_ACCOUNT_DEFAULT = "honeynet.vn";
+    public static String FILE_ACCOUNT           = "account.txt";
+    public static String USER_ACCOUNT_DEFAULT   = "admin";
+    public static String PASS_ACCOUNT_DEFAULT   = "honeynet.vn";
 
     /**
      * KEY for login
      */
-    public static final int KEY_LOGIN_OK = 1;
-    public static final int KEY_LOGIN_WRONG_PASS = 2;
-    public static final int KEY_LOGIN_WRONG_USER = 3;
+    public static final int KEY_LOGIN_OK            = 1;
+    public static final int KEY_LOGIN_WRONG_PASS    = 2;
+    public static final int KEY_LOGIN_WRONG_USER    = 3;
 
 
     /**
@@ -80,7 +71,7 @@ public class IotConstant {
     /**
      * Refresh value in each string
      */
-    public static void refresh() {
+    public static void refreshSchedulePump() {
         SCHEDULE_PUMP = "http://" + SERVER_IP_ADDRESS + "/iot/api/api.php?startON=" +
                 STARTED_TIME + "&stopOFF=" + STOPPED_TIME;
     }

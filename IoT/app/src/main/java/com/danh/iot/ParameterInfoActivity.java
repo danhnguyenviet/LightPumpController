@@ -10,9 +10,7 @@ import android.widget.Toast;
 
 import com.danh.iot.com.danh.iot.thread.ThreadSetting;
 
-public class TemperatureMoistureActivity extends Activity {
-    BackgroundWorker backgroudWorkerForTemperature;
-    BackgroundWorker backgroudWorkerForMoisture;
+public class ParameterInfoActivity extends Activity {
     private TextView tvLocation_0;
     private TextView tvDate_0;
     private TextView tvTime_0;
@@ -21,12 +19,15 @@ public class TemperatureMoistureActivity extends Activity {
     private TextView tvDate_1;
     private TextView tvTime_1;
     private TextView tvSoilMoisture;
-
+    private TextView tvLocation_2;
+    private TextView tvDate_2;
+    private TextView tvTime_2;
+    private TextView tvHumidity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_temperature_moisture);
+        setContentView(R.layout.activity_parameter_info);
 
         loadTabs();
         loadControlls();
@@ -38,15 +39,20 @@ public class TemperatureMoistureActivity extends Activity {
      * Load controlls to context
      */
     public void loadControlls() {
-        tvLocation_0      = (TextView) findViewById(R.id.tvLocationTemperature);
-        tvDate_0          = (TextView) findViewById(R.id.tvDateTemperature);
-        tvTime_0          = (TextView) findViewById(R.id.tvTimeTemperature);
-        tvTemperature   = (TextView) findViewById(R.id.tvTemperatureValue);
+        tvLocation_0        = (TextView) findViewById(R.id.tvLocationTemperature);
+        tvDate_0            = (TextView) findViewById(R.id.tvDateTemperature);
+        tvTime_0            = (TextView) findViewById(R.id.tvTimeTemperature);
+        tvTemperature       = (TextView) findViewById(R.id.tvTemperatureValue);
 
-        tvLocation_1      = (TextView) findViewById(R.id.tvLocationMoisture);
-        tvDate_1          = (TextView) findViewById(R.id.tvDateMoisture);
-        tvTime_1          = (TextView) findViewById(R.id.tvTimeMoisture);
-        tvSoilMoisture  = (TextView) findViewById(R.id.tvMoistureValue);
+        tvLocation_1        = (TextView) findViewById(R.id.tvLocationMoisture);
+        tvDate_1            = (TextView) findViewById(R.id.tvDateMoisture);
+        tvTime_1            = (TextView) findViewById(R.id.tvTimeMoisture);
+        tvSoilMoisture      = (TextView) findViewById(R.id.tvMoistureValue);
+
+        tvLocation_2      = (TextView) findViewById(R.id.tvLocationHumidity);
+        tvDate_2          = (TextView) findViewById(R.id.tvDateHumidity);
+        tvTime_2          = (TextView) findViewById(R.id.tvTimeHumidity);
+        tvHumidity        = (TextView) findViewById(R.id.tvHumidityValue);
     }
 
     /**
@@ -54,32 +60,27 @@ public class TemperatureMoistureActivity extends Activity {
      */
     public void loadTabs()
     {
-        //Lấy Tabhost id ra trước (cái này của built - in android
         final TabHost tab = (TabHost) findViewById(android.R.id.tabhost);
-        //gọi lệnh setup
         tab.setup();
         TabHost.TabSpec spec;
-        //Tạo tab1
+
+        // Create tab1
         spec = tab.newTabSpec("t1");
         spec.setContent(R.id.tab1);
         spec.setIndicator("Temperature");
         tab.addTab(spec);
-        //Tạo tab2
+        // Create tab2
         spec = tab.newTabSpec("t2");
         spec.setContent(R.id.tab2);
         spec.setIndicator("Moisture");
         tab.addTab(spec);
-        //Thiết lập tab mặc định được chọn ban đầu là tab 0
+        // Create tab3
+        spec = tab.newTabSpec("t3");
+        spec.setContent(R.id.tab3);
+        spec.setIndicator("Humidity");
+        tab.addTab(spec);
+        // Default tab is tab 0
         tab.setCurrentTab(0);
-        //Ở đây Tôi để sự kiện này để các bạn tùy xử lý
-        //Ví dụ tab1 chưa nhập thông tin xong mà lại qua tab 2 thì báo...
-//        tab.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
-//            public void onTabChanged(String arg0) {
-//                String s="Tab tag ="+arg0 +"; index ="+
-//                        tab.getCurrentTab();
-//                Toast.makeText(getApplicationContext(),
-//                        s, Toast.LENGTH_SHORT).show();}
-//        });
     }
 
     public void readTemperatureFromServer(){
@@ -159,6 +160,4 @@ public class TemperatureMoistureActivity extends Activity {
             }
         }
     }
-
-
 }

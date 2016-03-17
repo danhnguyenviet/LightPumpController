@@ -31,7 +31,7 @@
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="   "
+        android:text="  "
         android:id="@+id/switch1"
         android:textColor="#ff0000"
         android:checked="false"
@@ -40,5 +40,47 @@
         android:layout_toEndOf="@+id/ivLightIcon"
         android:layout_marginTop="10dp">
     </Switch>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivLightIcon1"
+        android:src="@mipmap/ic_light_1"
+        android:layout_below="@+id/ivLightIcon"
+        android:layout_alignLeft="@+id/ivLightIcon"
+        android:layout_alignStart="@+id/ivLightIcon" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="  "
+        android:id="@+id/switch2"
+        android:textColor="#ff0000"
+        android:checked="false"
+        android:layout_below="@+id/ivLightIcon"
+        android:layout_toRightOf="@+id/ivLightIcon1"
+        android:layout_toEndOf="@+id/ivLightIcon1"
+        android:layout_marginTop="10dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivLightIcon2"
+        android:src="@mipmap/ic_light_2"
+        android:layout_below="@+id/ivLightIcon1"
+        android:layout_alignLeft="@+id/ivLightIcon1"
+        android:layout_alignStart="@+id/ivLightIcon1" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="  "
+        android:id="@+id/switch3"
+        android:textColor="#ff0000"
+        android:checked="false"
+        android:layout_below="@+id/ivLightIcon1"
+        android:layout_toRightOf="@+id/ivLightIcon2"
+        android:layout_toEndOf="@+id/ivLightIcon2"
+        android:layout_marginTop="10dp"/>
 
 </RelativeLayout>

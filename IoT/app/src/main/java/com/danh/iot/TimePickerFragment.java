@@ -70,13 +70,13 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
             format = " AM";
         }
 
-        if (SystemActivity.numOfTextClock.equals(0)) {
+        if (TabhostSystemActivity.numOfClock.equals(0)) {
             if (minute >= 10) {
                 tv0.setText(String.valueOf(hourOfDay) + ":" + minute + format);
             } else {
                 tv0.setText(String.valueOf(hourOfDay) + ":0" + minute + format);
             }
-        } else if (SystemActivity.numOfTextClock.equals(1)) {
+        } else if (TabhostSystemActivity.numOfClock.equals(1)) {
             if (minute >= 10) {
                 tv1.setText(String.valueOf(hourOfDay) + ":" + minute + format);
             } else {

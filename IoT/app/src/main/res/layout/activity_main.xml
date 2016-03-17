@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:text="Light &amp; Pump"
             android:id="@+id/btnSystem"
-            android:onClick="callSystemActivity"
+            android:onClick="callTabhostSystemActivity"
             android:layout_below="@+id/imageView2"
             android:layout_alignLeft="@+id/btnTemperature"
             android:layout_alignStart="@+id/btnTemperature" />

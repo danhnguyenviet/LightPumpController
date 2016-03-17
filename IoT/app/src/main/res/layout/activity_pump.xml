@@ -84,7 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Apply"
-        android:id="@+id/btnSheduledApply"
+        android:id="@+id/btnScheduledApply"
         android:layout_below="@+id/tcStoppedTime"
         android:layout_alignLeft="@+id/tcStoppedTime"
         android:layout_alignStart="@+id/tcStoppedTime" />
@@ -96,7 +96,7 @@
         android:text="Max Value"
         android:id="@+id/tvMaxValue"
         android:textColor="#ff0000"
-        android:layout_below="@+id/btnSheduledApply"
+        android:layout_below="@+id/btnScheduledApply"
         android:layout_alignLeft="@+id/tvSheduledTime"
         android:layout_alignStart="@+id/tvSheduledTime" />
 
@@ -107,8 +107,8 @@
         android:ems="10"
         android:id="@+id/etMaxValue"
         android:layout_below="@+id/tvMaxValue"
-        android:layout_alignLeft="@+id/btnSheduledApply"
-        android:layout_alignStart="@+id/btnSheduledApply"
+        android:layout_alignLeft="@+id/btnScheduledApply"
+        android:layout_alignStart="@+id/btnScheduledApply"
         android:descendantFocusability="beforeDescendants"
         android:focusableInTouchMode="true"/>
 
