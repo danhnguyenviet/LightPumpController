@@ -29,11 +29,19 @@
                     android:layout_height="match_parent">
                     <include layout="@layout/activity_temperature"/>
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/tab2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" >
                     <include layout="@layout/activity_moisture"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tab3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+                    <include layout="@layout/activity_humidity"/>
                 </LinearLayout>
             </FrameLayout>
         </LinearLayout>

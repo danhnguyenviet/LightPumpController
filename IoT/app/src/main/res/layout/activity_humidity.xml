@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Humidity"
+        android:id="@+id/tvHumidity"
+        android:layout_marginTop="30dp"
+        android:textSize="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:textColor="#000000"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location:"
+        android:id="@+id/tvLocationHumidity"
+        android:layout_below="@+id/tvHumidity"
+        android:layout_alignLeft="@+id/tvHumidity"
+        android:layout_alignStart="@+id/tvHumidity"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:id="@+id/textView6"
+        android:textSize="20dp"
+        android:layout_below="@+id/tvLocationHumidity"
+        android:layout_alignLeft="@+id/tvLocationHumidity"
+        android:layout_alignStart="@+id/tvLocationHumidity"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="null"
+        android:id="@+id/tvDateHumidity"
+        android:textSize="20dp"
+        android:layout_below="@+id/textView6"
+        android:layout_alignLeft="@+id/textView6"
+        android:layout_alignStart="@+id/textView6"
+        android:textColor="#ff0000" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        android:id="@+id/textView8"
+        android:textSize="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/tvDateHumidity"
+        android:layout_alignLeft="@+id/tvDateHumidity"
+        android:layout_alignStart="@+id/tvDateHumidity" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="null"
+        android:id="@+id/tvTimeHumidity"
+        android:textSize="20dp"
+        android:layout_below="@+id/textView8"
+        android:layout_alignLeft="@+id/textView8"
+        android:layout_alignStart="@+id/textView8"
+        android:textColor="#ff0000" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Humidity"
+        android:id="@+id/textView10"
+        android:textSize="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/tvTimeHumidity"
+        android:layout_alignLeft="@+id/tvTimeHumidity"
+        android:layout_alignStart="@+id/tvTimeHumidity" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="null"
+        android:id="@+id/tvHumidityValue"
+        android:textSize="20dp"
+        android:layout_below="@+id/textView10"
+        android:layout_alignLeft="@+id/textView10"
+        android:layout_alignStart="@+id/textView10"
+        android:textColor="#ff0000" />
+</RelativeLayout>

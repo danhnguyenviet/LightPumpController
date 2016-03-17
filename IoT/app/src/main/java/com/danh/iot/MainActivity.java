@@ -12,12 +12,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    BackgroundWorker backgroudWorkerForTemperature;
-    BackgroundWorker backgroudWorkerForMoisture;
     public static String temperatureInfo = "";
     public static String moistureInfo = "";
-
-    private TextView actionBarTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,21 +23,37 @@ public class MainActivity extends AppCompatActivity {
         checkInternetConenction();
     }
 
-    public void callSystemActivity(View view) {
+    /**
+     * Start light & pump activity
+     * @param view
+     */
+    public void callTabhostSystemActivity(View view) {
         Intent intent = new Intent(this, TabhostSystemActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Start parameter informatin activity
+     * @param view
+     */
     public void callTemperatureMoistureActivity(View view) {
-        Intent intent = new Intent(this, TemperatureMoistureActivity.class);
+        Intent intent = new Intent(this, ParameterInfoActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Start setting activity
+     * @param view
+     */
     public void callSettingActivity(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Start about activity
+     * @param view
+     */
     public void callAboutActivity(View view) {
         Intent intent = new Intent(this, AboutActivity.class);
         startActivity(intent);
@@ -125,12 +137,12 @@ public class MainActivity extends AppCompatActivity {
                 connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
                 connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING ||
                 connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
-            Toast.makeText(this, " Connected ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Connected ", Toast.LENGTH_LONG).show();
             return true;
         }else if (
                 connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED ||
                         connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED  ) {
-            Toast.makeText(this, " Not Connected ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Not Connected ", Toast.LENGTH_SHORT).show();
             return false;
         }
         return false;
