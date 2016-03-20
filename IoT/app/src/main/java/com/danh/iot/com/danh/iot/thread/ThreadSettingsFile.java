@@ -147,6 +147,7 @@ public class ThreadSettingsFile extends Thread {
         for (int i = 0; i< fp.length; i++){
             if(i == (fp.length - 1)){
                 strFP += fp[i];
+                break;
             }
             strFP = strFP + fp[i] + ",";
         }
