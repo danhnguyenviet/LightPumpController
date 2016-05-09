@@ -5,4 +5,6 @@
     <!-- action bar-->
     <string name="menu_item_change_password">Change password</string>
     <string name="menu_item_guide">Guide</string>
+    <string name="stringHigh">High</string>
+    <string name="stringLow">Low</string>
 </resources>

@@ -4,6 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +28,18 @@ public class ParameterInfoActivity extends Activity {
     private TextView tvDate_2;
     private TextView tvTime_2;
     private TextView tvHumidity;
+    private CheckBox cbSetHumidityLimitation;
+    private TextView tvHighHumidity;
+    private TextView tvLowHumidity;
+    private EditText etHighHumidity;
+    private EditText etLowHumidity;
+    private Button btnApplyHumidityLimitation;
+    private CheckBox cbSetMoistureLimitation;
+    private TextView tvHighMoisture;
+    private TextView tvLowMoisture;
+    private EditText etHighMoisture;
+    private EditText etLowMoisture;
+    private Button btnApplyMoistureLimitation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +55,58 @@ public class ParameterInfoActivity extends Activity {
         loadControlls();
         readTemperatureFromServer();
         readMoistureFromServer();
+
+        cbSetHumidityLimitation.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                setHumidityLimitationVisualization();
+            }
+        });
+
+        cbSetMoistureLimitation.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                setMoistureLimitationVisualization();
+            }
+        });
+    }
+
+    /**
+     * Set the vizualiztion of humidity limitation
+     */
+    public void setHumidityLimitationVisualization() {
+        if (cbSetHumidityLimitation.isChecked()) {
+            tvHighHumidity.setVisibility(View.VISIBLE);
+            tvLowHumidity.setVisibility(View.VISIBLE);
+            etHighHumidity.setVisibility(View.VISIBLE);
+            etLowHumidity.setVisibility(View.VISIBLE);
+            btnApplyHumidityLimitation.setVisibility(View.VISIBLE);
+        } else {
+            tvHighHumidity.setVisibility(View.INVISIBLE);
+            tvLowHumidity.setVisibility(View.INVISIBLE);
+            etHighHumidity.setVisibility(View.INVISIBLE);
+            etLowHumidity.setVisibility(View.INVISIBLE);
+            btnApplyHumidityLimitation.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    /**
+     * Set the vizualiztion of moisture limitation
+     */
+    public void setMoistureLimitationVisualization() {
+        if (cbSetMoistureLimitation.isChecked()) {
+            tvHighMoisture.setVisibility(View.VISIBLE);
+            tvLowMoisture.setVisibility(View.VISIBLE);
+            etHighMoisture.setVisibility(View.VISIBLE);
+            etLowMoisture.setVisibility(View.VISIBLE);
+            btnApplyMoistureLimitation.setVisibility(View.VISIBLE);
+        } else {
+            tvHighMoisture.setVisibility(View.INVISIBLE);
+            tvLowMoisture.setVisibility(View.INVISIBLE);
+            etHighMoisture.setVisibility(View.INVISIBLE);
+            etLowMoisture.setVisibility(View.INVISIBLE);
+            btnApplyMoistureLimitation.setVisibility(View.INVISIBLE);
+        }
     }
 
     /**
@@ -58,6 +127,20 @@ public class ParameterInfoActivity extends Activity {
         tvDate_2          = (TextView) findViewById(R.id.tvDateHumidity);
         tvTime_2          = (TextView) findViewById(R.id.tvTimeHumidity);
         tvHumidity        = (TextView) findViewById(R.id.tvHumidityValue);
+
+        cbSetHumidityLimitation     = (CheckBox) findViewById(R.id.cbSetHumidityLimitation);
+        tvHighHumidity              = (TextView) findViewById(R.id.tvHighHumidity);
+        tvLowHumidity                = (TextView) findViewById(R.id.tvLowHumidity);
+        etHighHumidity              = (EditText) findViewById(R.id.etHighHumidity);
+        etLowHumidity               = (EditText) findViewById(R.id.etLowHumidity);
+        btnApplyHumidityLimitation  = (Button) findViewById(R.id.btnApplyHumidityLimitation);
+
+        cbSetMoistureLimitation     = (CheckBox) findViewById(R.id.cbSetMoistureLimitation);
+        tvHighMoisture              = (TextView) findViewById(R.id.tvHighMoisture);
+        tvLowMoisture                = (TextView) findViewById(R.id.tvLowMoisture);
+        etHighMoisture              = (EditText) findViewById(R.id.etHighMoisture);
+        etLowMoisture               = (EditText) findViewById(R.id.etLowMoisture);
+        btnApplyMoistureLimitation  = (Button) findViewById(R.id.btnApplyMoistureLimitation);
     }
 
     /**
