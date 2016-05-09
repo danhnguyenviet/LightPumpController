@@ -1,95 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Moisture"
-        android:id="@+id/textView1"
-        android:layout_marginTop="30dp"
-        android:textSize="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginStart="30dp"
-        android:textColor="#000000"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+    <RelativeLayout
+        android:id="@+id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Location:"
-        android:id="@+id/tvLocationMoisture"
-        android:layout_below="@+id/textView1"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_alignStart="@+id/textView1"
-        android:textSize="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Moisture"
+            android:id="@+id/textView1"
+            android:layout_marginTop="30dp"
+            android:textSize="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
+            android:textColor="#000000"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Date"
-        android:id="@+id/textView6"
-        android:textSize="20dp"
-        android:layout_below="@+id/tvLocationMoisture"
-        android:layout_alignLeft="@+id/tvLocationMoisture"
-        android:layout_alignStart="@+id/tvLocationMoisture"
-        android:layout_marginTop="30dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location:"
+            android:id="@+id/tvLocationMoisture"
+            android:layout_below="@+id/textView1"
+            android:layout_alignLeft="@+id/textView1"
+            android:layout_alignStart="@+id/textView1"
+            android:textSize="20dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="null"
-        android:id="@+id/tvDateMoisture"
-        android:textSize="20dp"
-        android:layout_below="@+id/textView6"
-        android:layout_alignLeft="@+id/textView6"
-        android:layout_alignStart="@+id/textView6"
-        android:textColor="#ff0000" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:id="@+id/textView6"
+            android:textSize="20dp"
+            android:layout_below="@+id/tvLocationMoisture"
+            android:layout_alignLeft="@+id/tvLocationMoisture"
+            android:layout_alignStart="@+id/tvLocationMoisture"
+            android:layout_marginTop="30dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Time"
-        android:id="@+id/textView8"
-        android:textSize="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/tvDateMoisture"
-        android:layout_alignLeft="@+id/tvDateMoisture"
-        android:layout_alignStart="@+id/tvDateMoisture" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="null"
+            android:id="@+id/tvDateMoisture"
+            android:textSize="20dp"
+            android:layout_below="@+id/textView6"
+            android:layout_alignLeft="@+id/textView6"
+            android:layout_alignStart="@+id/textView6"
+            android:textColor="#ff0000" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="null"
-        android:id="@+id/tvTimeMoisture"
-        android:textSize="20dp"
-        android:layout_below="@+id/textView8"
-        android:layout_alignLeft="@+id/textView8"
-        android:layout_alignStart="@+id/textView8"
-        android:textColor="#ff0000" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:id="@+id/textView8"
+            android:textSize="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/tvDateMoisture"
+            android:layout_alignLeft="@+id/tvDateMoisture"
+            android:layout_alignStart="@+id/tvDateMoisture" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Soil Moisture"
-        android:id="@+id/textView10"
-        android:textSize="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/tvTimeMoisture"
-        android:layout_alignLeft="@+id/tvTimeMoisture"
-        android:layout_alignStart="@+id/tvTimeMoisture" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="null"
+            android:id="@+id/tvTimeMoisture"
+            android:textSize="20dp"
+            android:layout_below="@+id/textView8"
+            android:layout_alignLeft="@+id/textView8"
+            android:layout_alignStart="@+id/textView8"
+            android:textColor="#ff0000" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="null"
-        android:id="@+id/tvMoistureValue"
-        android:textSize="20dp"
-        android:layout_below="@+id/textView10"
-        android:layout_alignLeft="@+id/textView10"
-        android:layout_alignStart="@+id/textView10"
-        android:textColor="#ff0000" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Soil moisture"
+            android:id="@+id/textView10"
+            android:textSize="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/tvTimeMoisture"
+            android:layout_alignLeft="@+id/tvTimeMoisture"
+            android:layout_alignStart="@+id/tvTimeMoisture" />
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="null"
+            android:id="@+id/tvMoistureValue"
+            android:textSize="20dp"
+            android:layout_below="@+id/textView10"
+            android:layout_alignLeft="@+id/textView10"
+            android:layout_alignStart="@+id/textView10"
+            android:textColor="#ff0000" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set limitation"
+            android:id="@+id/cbSetMoistureLimitation"
+            android:layout_below="@+id/tvMoistureValue"
+            android:layout_alignLeft="@+id/tvMoistureValue"
+            android:layout_alignStart="@+id/tvMoistureValue"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:checked="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="High"
+            android:id="@+id/tvHighMoisture"
+            android:textColor="#ff0000"
+            android:textSize="20sp"
+            android:layout_below="@+id/cbSetMoistureLimitation"
+            android:layout_alignLeft="@+id/cbSetMoistureLimitation"
+            android:layout_alignStart="@+id/cbSetMoistureLimitation"
+            android:visibility="invisible" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/etHighMoisture"
+            android:layout_below="@+id/tvHighMoisture"
+            android:layout_alignLeft="@+id/tvHighMoisture"
+            android:layout_alignStart="@+id/tvHighMoisture"
+            android:layout_alignRight="@+id/cbSetMoistureLimitation"
+            android:layout_alignEnd="@+id/cbSetMoistureLimitation"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Low"
+            android:id="@+id/tvLowMoisture"
+            android:textColor="#ff0000"
+            android:textSize="20sp"
+            android:layout_below="@+id/etHighMoisture"
+            android:layout_alignLeft="@+id/etHighMoisture"
+            android:layout_alignStart="@+id/etHighMoisture"
+            android:visibility="invisible" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/etLowMoisture"
+            android:layout_below="@+id/tvLowMoisture"
+            android:layout_alignRight="@+id/etHighMoisture"
+            android:layout_alignEnd="@+id/etHighMoisture"
+            android:layout_alignLeft="@+id/tvLowMoisture"
+            android:layout_alignStart="@+id/tvLowMoisture"
+            android:visibility="invisible" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Apply"
+            android:id="@+id/btnApplyMoistureLimitation"
+            android:layout_below="@+id/etLowMoisture"
+            android:layout_alignLeft="@+id/etLowMoisture"
+            android:layout_alignStart="@+id/etLowMoisture"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+</ScrollView>
